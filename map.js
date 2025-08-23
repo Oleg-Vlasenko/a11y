@@ -51,20 +51,27 @@ const wmsLayer1 = L.tileLayer.wms('http://inetzp.cloud-ip.biz:8080/geoserver/Dne
 }); //.addTo(map);
 
 const wmsLayer2 = L.tileLayer.wms('http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/wms', {
-    layers: 'Dnepr:Заклади громадського харчування',
+    layers: 'mindev_streets',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer3 = L.tileLayer.wms('http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/wms', {
+    layers: 'Dnepr:Заклади громадського харчування',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
+});
+
+const wmsLayer4 = L.tileLayer.wms('http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/wms', {
     layers: 'Dnepr:Заклади охорони здоровя',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
-const wmsLayer4 = L.tileLayer.wms('http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/wms', {
+const wmsLayer5 = L.tileLayer.wms('http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/wms', {
     layers: 'Dnepr:Фармацевтичні заклади',
     format: 'image/png',
     transparent: true,
@@ -141,7 +148,13 @@ sidebarBtns.forEach(btn => {
                 ].join(',');
 
 
+                // const urls = [
+                //     `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:Заклади охорони здоровя&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                //     `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:Фармацевтичні заклади&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`
+                // ];
+
                 const urls = [
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mindev_streets&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
                     `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:Заклади охорони здоровя&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
                     `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:Фармацевтичні заклади&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`
                 ];
@@ -159,17 +172,6 @@ sidebarBtns.forEach(btn => {
                         .then(res => res.json())
                         .then(data => {
                             if (data.features && data.features.length > 0) {
-                                // const svgIcon = L.divIcon({
-                                //     className: 'custom-svg-icon',
-                                //     html: `<svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
-                                //                 <circle cx="15" cy="15" r="10" fill="blue" stroke="black" stroke-width="2"/>
-                                //             </svg>`,
-                                //     iconSize: [30, 40],
-                                //     iconAnchor: [15, 40]
-                                // });
-
-                                // marker = L.marker(e.latlng, { icon: svgIcon }).addTo(map);
-
                                 if (window._tst11__marker) {
                                     map.removeLayer(window._tst11__marker);
                                     window._tst11__marker = false;
@@ -177,10 +179,26 @@ sidebarBtns.forEach(btn => {
 
                                 window._tst11__marker = L.marker(e.latlng).addTo(map);
 
+
                                 const props = data.features[0].properties;
-                                const content = Object.entries(props)
-                                    .map(([k, v]) => `<b>${k}</b>: ${v ?? ''}`)
-                                    .join('<br>');
+                                console.log("props:");
+                                console.log(props);
+
+                                let content;
+                                if (urls[index].includes('mindev_streets')) {
+                                    // только один атрибут
+                                    content = props['Desr'] ?? '(без назви)';
+                                } else {
+                                    // стандартный вывод
+                                    content = Object.entries(props)
+                                        .map(([k, v]) => `<b>${k}</b>: ${v ?? ''}`)
+                                        .join('<br>');
+                                }
+
+                                // const props = data.features[0].properties;
+                                // const content = Object.entries(props)
+                                //     .map(([k, v]) => `<b>${k}</b>: ${v ?? ''}`)
+                                //     .join('<br>');
 
                                 L.popup()
                                     .setLatLng(e.latlng)
@@ -244,9 +262,10 @@ const baseLayers = {
 
 const overlays = {
     "Будівлі": wmsLayer1,
-    "Заклади охорони здоровя": wmsLayer3,
-    "Фармацевтичні заклади": wmsLayer4,
-    "Заклади громадського харчування": wmsLayer2
+    "Безбар`єрний простір": wmsLayer2,
+    "Заклади охорони здоровя": wmsLayer4,
+    "Фармацевтичні заклади": wmsLayer5,
+    "Заклади громадського харчування": wmsLayer3
 };
 
 function createCustomLayerControl(base, overlays, map, containerId) {
