@@ -1,0 +1,415 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f7fafb;
+}
+
+#map {
+  position: absolute;
+  left: 56px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 100vh;
+  background: #232c33;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.03);
+}
+
+.sidebar-logo-btn {
+  width: 40px;
+  height: 40px;
+  margin: 16px 0 18px 0;
+  border: none;
+  background: #23e5db;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(35, 229, 219, 0.11);
+  transition: background .2s;
+  outline: none;
+}
+
+.sidebar-logo-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+  stroke: #fff;
+  stroke-width: 1.5;
+  transition: fill .2s, stroke .2s;
+}
+
+.sidebar-logo-btn:focus-visible {
+  box-shadow: 0 0 0 2px #23e5db99;
+}
+
+.sidebar-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 7px 0;
+  border: none;
+  background: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .2s;
+  outline: none;
+}
+
+.sidebar-btn svg {
+  width: 28px;
+  height: 28px;
+  stroke: #99a8b6;
+  fill: none;
+  stroke-width: 2;
+  transition: stroke .2s, fill .2s;
+  pointer-events: none;
+}
+
+.sidebar-btn:hover,
+.sidebar-btn:focus-visible {
+  background: #263746;
+}
+
+.sidebar-btn:hover svg,
+.sidebar-btn:focus-visible svg {
+  stroke: #fff;
+}
+
+.sidebar-btn.active {
+  background: #263746;
+}
+
+.sidebar-btn.active svg {
+  stroke: #fff;
+}
+
+.sidebar-btn.active::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  border-radius: 2px;
+  background: #23e5db;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  margin-bottom: 18px;
+}
+
+.sidebar-bottom .sidebar-btn {
+  margin-bottom: 0;
+}
+
+/* Custom Controls (справа): меньший размер, равномерный gap и зеленый #00cc99 */
+.custom-controls {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  /* Исходная позиция, остается неизменной */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+  z-index: 1001;
+  /* Удален transition для right, так как кнопки не смещаются */
+}
+
+/* Класс .custom-controls.shifted полностью удален */
+
+.custom-controls .custom-fullscreen-btn,
+.custom-zoom-btn,
+.custom-layer-btn {
+  background: #fff;
+  color: #00cc99;
+  transition: background .2s, color .2s;
+  border: none;
+  border-radius: 9.6px;
+  /* 12px * 0.8 */
+  box-shadow: 0 2px 8px rgba(35, 44, 51, 0.06);
+  width: 38.4px;
+  /* 48px * 0.8 */
+  height: 38.4px;
+  /* 48px * 0.8 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25.6px;
+  /* 32px * 0.8 */
+  cursor: pointer;
+  padding: 0;
+}
+
+.custom-controls .custom-fullscreen-btn svg,
+.custom-zoom-btn svg,
+.custom-layer-btn svg {
+  stroke: #00cc99;
+  fill: none;
+  transition: stroke .2s;
+  width: 22.4px;
+  /* 28px * 0.8 */
+  height: 22.4px;
+  /* 28px * 0.8 */
+}
+
+.custom-controls .custom-fullscreen-btn:hover,
+.custom-controls .custom-fullscreen-btn:focus-visible,
+.custom-zoom-btn:hover,
+.custom-zoom-btn:focus-visible,
+.custom-layer-btn:hover,
+.custom-layer-btn:focus-visible {
+  background: #00cc99;
+  color: #fff;
+}
+
+.custom-controls .custom-fullscreen-btn:hover svg,
+.custom-controls .custom-fullscreen-btn:focus-visible svg,
+.custom-zoom-btn:hover svg,
+.custom-zoom-btn:focus-visible svg,
+.custom-layer-btn:hover svg,
+.custom-layer-btn:focus-visible svg {
+  stroke: #fff;
+}
+
+.custom-layer-btn .hamburger-icon {
+  display: none;
+}
+
+.custom-zoom {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.custom-zoom-btn:last-child {
+  margin-bottom: 0;
+}
+
+.custom-layer-control-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.custom-layer-btn {
+  font-size: 25.6px;
+}
+
+.custom-layer-control {
+  position: absolute;
+  top: 45px;
+  /* 56px * 0.8 */
+  right: 0;
+  z-index: 10;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(35, 44, 51, 0.10);
+  padding: 12px 18px;
+  min-width: 170px;
+  font-size: 15px;
+  color: #222;
+  border: 1px solid #e3e9ef;
+  margin-top: 0;
+  display: none;
+  animation: fadeIn .15s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.custom-layer-control input[type="checkbox"],
+.custom-layer-control input[type="radio"] {
+  opacity: 0;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.custom-layer-control label {
+  position: relative;
+  padding-left: 28px;
+  user-select: none;
+  min-height: 22px;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  font-size: 14px;
+  color: #222;
+  gap: 7px;
+}
+
+.custom-layer-control label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #00cc99;
+  border-radius: 6px;
+  background: #fff;
+  box-sizing: border-box;
+  transition: border-color .2s, background .2s;
+}
+
+.custom-layer-control input[type="checkbox"]:checked+label:after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  width: 10px;
+  height: 5px;
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  background: none;
+  transform: rotate(-45deg);
+}
+
+.custom-layer-control input[type="checkbox"]:checked+label:before {
+  background: #00cc99;
+  border-color: #00cc99;
+}
+
+.custom-layer-control input[type="radio"]+label:before {
+  border-radius: 50%;
+}
+
+.custom-layer-control input[type="radio"]:checked+label:before {
+  background: #00cc99;
+  border-color: #00cc99;
+}
+
+.custom-layer-control input[type="radio"]:checked+label:after {
+  content: "";
+  position: absolute;
+  left: 5.5px;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.custom-layer-control .leaflet-control-layers-separator {
+  border-top: 1px solid #e3e9ef;
+  margin: 10px 0;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+}
+
+.leaflet-popup-content {
+  font-size: 14px;
+}
+
+.folder-popup {
+  position: absolute;
+  width: 300px;
+  height: 500px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(35, 44, 51, 0.10);
+  border: 1px solid #e3e9ef;
+  z-index: 2000;
+  display: none;
+  /* Changed from flex to block */
+  opacity: 0;
+  /* Начальное состояние для анимации */
+  transform: translateY(-8px);
+  /* Начальное состояние для анимации */
+  padding: 20px;
+  /* Добавлен отступ для контента */
+}
+
+.folder-popup.active {
+  display: block;
+  /* Changed from flex to block */
+  opacity: 1;
+  transform: none;
+}
+
+/* Новые стили для заголовка и текста внутри folder-popup */
+.folder-popup h3 {
+  font-size: 20px;
+  color: #222;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.folder-popup p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+#settingsPopup {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 33%;
+  /* примерно треть высоты */
+  background: white;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  /* выше карты и прочих элементов */
+  display: none;
+  overflow: auto;
+  /* если будет контент */
+  padding: 10px;
+  box-sizing: border-box;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+#settingsPopup h3 {
+  font-size: 20px;
+  color: #222;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+#settingsPopup p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
