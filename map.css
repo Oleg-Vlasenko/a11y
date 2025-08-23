@@ -415,5 +415,100 @@ body {
 }
 
 .leaflet-popup-tip {
-    display: none !important;
+  display: none !important;
+}
+
+#popupBtn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 12px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #11d1c1;
+  background-color: transparent;
+  border: 1px solid #11d1c1;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+#popupBtn:hover {
+  color: #fff;
+  background-color: #11d1c1;
+  border-color: #11d1c1;
+}
+
+#popupTextarea {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 6px 10px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #333;
+  /* обычный текст */
+  background-color: transparent;
+  border: 1px solid #11d1c1;
+  border-radius: 4px;
+  resize: vertical;
+  transition: all 0.15s ease-in-out;
+  box-sizing: border-box;
+}
+
+/* При фокусе — как у hover на кнопке */
+#popupTextarea:focus {
+  outline: none;
+  border-color: #11d1c1;
+  background-color: rgba(17, 209, 193, 0.05);
+  box-shadow: 0 0 4px rgba(17, 209, 193, 0.5);
+}
+
+#settingsPopup {
+  padding-left: 20px;
+  background: #f4f6f8;
+}
+
+#adminBtn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  background-color: #11beb0ff;
+  border: 1px solid #11d1c1;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+#adminBtn:hover {
+    background: #0b9488ff;
+}
+
+#adminBtn .material-symbols-outlined {
+    font-size: 20px;       /* размер иконки */
+    vertical-align: middle;
+    margin-right: 6px;     /* отступ от текста */
+    color: #ffffff;        /* твой зелёный цвет */
+}
+
+#settingsPopup h3 {
+  font-family: 'Ubuntu', sans-serif;
+  color: rgb(9, 158, 146);
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+.leaflet-popup-content h4 {
+  margin: 12px 0px 8px 0px;
+}
+
+.leaflet-popup-content p {
+  margin: 8px 0px;
 }

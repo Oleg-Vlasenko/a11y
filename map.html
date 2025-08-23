@@ -2,11 +2,15 @@
 <html>
 
 <head>
-    <title>Leaflet + GeoServer WMS + WFS Highlight (UI Redesign)</title>
+    <title>Мапа безбар'єрності</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
     <link rel="stylesheet" href="map.css" />
+
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
@@ -18,46 +22,28 @@
                 <polygon points="12,4 15,16 12,13 9,16" />
             </svg>
         </button>
-        <button class="sidebar-btn active" title="Map" data-btn="map" tabindex="0">
+        <button class="sidebar-btn active" title="Мапа" data-btn="map" tabindex="0">
             <svg viewBox="0 0 28 28">
                 <rect x="3.5" y="7" width="6" height="14" rx="1.2" />
                 <rect x="11.5" y="5" width="6" height="16" rx="1.2" />
                 <rect x="19.5" y="9" width="5" height="12" rx="1.2" />
             </svg>
         </button>
-        <button class="sidebar-btn" title="Pin map" data-btn="pin" id="btnPin" tabindex="0">
+        <button class="sidebar-btn" title="Виділити об'єкти" data-btn="pin" id="btnPin" tabindex="0">
             <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" class="feather feather-tag">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
                 <line x1="7" y1="7" x2="7.01" y2="7"></line>
             </svg>
         </button>
-        <button class="sidebar-btn" title="Folder" data-btn="folder" id="folderBtn" tabindex="0">
+        <button class="sidebar-btn" title="Кабінет користувача" data-btn="folder" id="folderBtn" tabindex="0">
             <svg viewBox="0 0 28 28">
                 <path d="M4 10v8.5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-6.5l-2-3H6a2 2 0 0 0-2 2z" />
             </svg>
         </button>
-        <button class="sidebar-btn" title="Grid" data-btn="grid" tabindex="0">
-            <svg viewBox="0 0 28 28">
-                <rect x="4.5" y="5.5" width="6" height="6" rx="1.2" />
-                <rect x="4.5" y="16.5" width="6" height="6" rx="1.2" />
-                <rect x="15.5" y="5.5" width="6" height="6" rx="1.2" />
-                <rect x="15.5" y="16.5" width="6" height="6" rx="1.2" />
-            </svg>
-        </button>
-        <button class="sidebar-btn" title="Book" data-btn="book" tabindex="0">
-            <svg viewBox="0 0 28 28">
-                <rect x="5" y="6" width="8.5" height="16" rx="1.2" />
-                <rect x="14.5" y="6" width="8.5" height="16" rx="1.2" />
-            </svg>
-        </button>
-        <button class="sidebar-btn" title="Flag" data-btn="flag" tabindex="0">
-            <svg viewBox="0 0 28 28">
-                <path d="M7 22V6m0 0h8l2 4h4v8h-8l-2-4H7" />
-            </svg>
-        </button>
+
         <div class="sidebar-bottom">
-            <button class="sidebar-btn" title="Settings" data-btn="settings" id="btnSettings" tabindex="0">
+            <button class="sidebar-btn" title="Адміністрування" data-btn="settings" id="btnSettings" tabindex="0">
                 <svg viewBox="0 0 28 28">
                     <svg viewBox="0 0 28 28">
                         <path
@@ -69,8 +55,8 @@
     </div>
 
     <div class="folder-popup" id="folderPopup">
-        <h3>Это пример кастомного виджета</h3>
-        <p>Это рабочая область виджета или кабинета пользователя.</p>
+        <h3>Це приклад кастомного віджету</h3>
+        <p>Це робоча область віджету або кабінету користувача.</p>
     </div>
 
     <div class="custom-controls" id="customControls">
@@ -106,13 +92,16 @@
             <div class="custom-layer-control" id="customLayerControl"></div>
         </div>
     </div>
-    <div id="map">
-        <!-- Если контейнер карты у тебя, например, <div id="map"></div>, то лучше добавить settingsPopup внутри этого контейнера, чтобы позиционирование с position: absolute работало относительно карты -->
-        <div id="settingsPopup">
-            <h3>Настройки карты</h3>
-            <p>Здесь будет форма или любые элементы управления.</p>
-        </div>
 
+    <div id="map">
+        <div id="settingsPopup">
+            <h3>Область адміністрування</h3>
+
+            <button id="adminBtn" onclick="window.open('php/bid.php', '_blank')">
+                <span class="material-symbols-outlined">menu_open</span>
+                Перейти до заявок
+            </button>
+        </div>
     </div>
 
     <script src="map.js"></script>
