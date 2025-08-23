@@ -1,12 +1,17 @@
 
 window._tst11__pin_click = false;
+window._tst11__marker = false;
 
 function disablePinMode() {
-    console.log('1');
+
     if (!window._tst11__pin_click) {
         return;
     }
-    console.log('2');
+
+    if (window._tst11__marker) {
+        map.removeLayer(window._tst11__marker);
+        window._tst11__marker = false;
+    }
 
     map.getContainer().style.cursor = "";
 
@@ -126,7 +131,7 @@ sidebarBtns.forEach(btn => {
             map.getContainer().style.cursor = "crosshair";
 
             // Устанавливаем обработчик клика по карте
-            wfsClickHandler = function(e) {
+            wfsClickHandler = function (e) {
                 const bboxSize = 0.0005;
                 const bbox = [
                     e.latlng.lng - bboxSize,
@@ -141,8 +146,6 @@ sidebarBtns.forEach(btn => {
                     `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:Фармацевтичні заклади&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`
                 ];
 
-                let highlightLayer;
-
                 function tryFetch(index) {
                     if (index >= urls.length) {
                         L.popup()
@@ -156,28 +159,24 @@ sidebarBtns.forEach(btn => {
                         .then(res => res.json())
                         .then(data => {
                             if (data.features && data.features.length > 0) {
-                                if (highlightLayer) {
-                                    map.removeLayer(highlightLayer);
+                                // const svgIcon = L.divIcon({
+                                //     className: 'custom-svg-icon',
+                                //     html: `<svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+                                //                 <circle cx="15" cy="15" r="10" fill="blue" stroke="black" stroke-width="2"/>
+                                //             </svg>`,
+                                //     iconSize: [30, 40],
+                                //     iconAnchor: [15, 40]
+                                // });
+
+                                // marker = L.marker(e.latlng, { icon: svgIcon }).addTo(map);
+
+                                if (window._tst11__marker) {
+                                    map.removeLayer(window._tst11__marker);
+                                    window._tst11__marker = false;
                                 }
 
-                                highlightLayer = L.geoJSON(data, {
-                                    pointToLayer: function (feature, latlng) {
-                                        return L.circleMarker(latlng, {
-                                            radius: 6,
-                                            fillColor: "#66ff7aff",
-                                            color: "#43ee3dff",
-                                            weight: 2,
-                                            opacity: 1,
-                                            fillOpacity: 0.5
-                                        });
-                                    },
-                                    style: {
-                                        color: '#43ee3dff',
-                                        weight: 2,
-                                        fillColor: '#66ff7aff',
-                                        fillOpacity: 0.4
-                                    }
-                                }).addTo(map);
+                                window._tst11__marker = L.marker(e.latlng).addTo(map);
+
                                 const props = data.features[0].properties;
                                 const content = Object.entries(props)
                                     .map(([k, v]) => `<b>${k}</b>: ${v ?? ''}`)
