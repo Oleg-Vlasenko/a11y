@@ -2,9 +2,11 @@
 window._tst11__pin_click = false;
 
 function disablePinMode() {
+    console.log('1');
     if (!window._tst11__pin_click) {
         return;
     }
+    console.log('2');
 
     map.getContainer().style.cursor = "";
 
@@ -19,12 +21,15 @@ function disablePinMode() {
         highlightLayer = null;
     }
 
+    document.querySelector('.leaflet-overlay-pane').innerHTML = '';
+
     // Закрываем все попапы
     map.closePopup();
 }
+
 const map = L.map('map', {
     zoomControl: false // Hide native zoom
-}).setView([48.4503, 34.9803], 18);
+}).setView([48.459898, 35.057008], 16);
 
 // Подложка
 const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -32,13 +37,35 @@ const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
     attribution: '© OpenStreetMap'
 }).addTo(map);
 
-// WMS слой
-const wmsLayer = L.tileLayer.wms('http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/wms', {
+// WMS слои
+const wmsLayer1 = L.tileLayer.wms('http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/wms', {
     layers: 'Dnepr:Будівлі',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
+}); //.addTo(map);
+
+const wmsLayer2 = L.tileLayer.wms('http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/wms', {
+    layers: 'Dnepr:Заклади громадського харчування',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
 }).addTo(map);
+
+const wmsLayer3 = L.tileLayer.wms('http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/wms', {
+    layers: 'Dnepr:Заклади охорони здоровя',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
+}).addTo(map);
+
+const wmsLayer4 = L.tileLayer.wms('http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/wms', {
+    layers: 'Dnepr:Фармацевтичні заклади',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
+}).addTo(map);
+
 
 let highlightLayer;
 
@@ -58,6 +85,8 @@ const folderPopup = document.getElementById('folderPopup');
 const customControls = document.getElementById('customControls'); // Получаем блок кнопок
 const btnSettings = document.getElementById('btnSettings');
 const settingsPopup = document.getElementById('settingsPopup');
+
+let wfsClickHandler;
 
 sidebarBtns.forEach(btn => {
     btn.addEventListener('click', function () {
@@ -97,8 +126,8 @@ sidebarBtns.forEach(btn => {
             map.getContainer().style.cursor = "crosshair";
 
             // Устанавливаем обработчик клика по карте
-            wfsClickHandler = function (e) {
-                const bboxSize = 0.00005;
+            wfsClickHandler = function(e) {
+                const bboxSize = 0.0005;
                 const bbox = [
                     e.latlng.lng - bboxSize,
                     e.latlng.lat - bboxSize,
@@ -106,48 +135,70 @@ sidebarBtns.forEach(btn => {
                     e.latlng.lat + bboxSize
                 ].join(',');
 
-                const wfsUrl = `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:Будівлі&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`;
 
-                fetch(wfsUrl)
-                    .then(res => res.json())
-                    .then(data => {
-                        if (highlightLayer) {
-                            map.removeLayer(highlightLayer);
-                        }
-                        if (data.features && data.features.length > 0) {
-                            highlightLayer = L.geoJSON(data, {
-                                style: {
-                                    color: '#FF0000',
-                                    weight: 2,
-                                    fillColor: '#FF6666',
-                                    fillOpacity: 0.4
-                                }
-                            }).addTo(map);
+                const urls = [
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:Заклади охорони здоровя&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:Фармацевтичні заклади&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`
+                ];
 
-                            const props = data.features[0].properties;
-                            const content = Object.entries(props)
-                                .map(([k, v]) => `<b>${k}</b>: ${v ?? ''}`)
-                                .join('<br>');
+                let highlightLayer;
 
-                            L.popup()
-                                .setLatLng(e.latlng)
-                                .setContent(content)
-                                .openOn(map);
-                        } else {
-                            L.popup()
-                                .setLatLng(e.latlng)
-                                .setContent('Нет объектов в месте клика.')
-                                .openOn(map);
-                        }
-                    })
-                    .catch(err => {
-                        console.error(err);
+                function tryFetch(index) {
+                    if (index >= urls.length) {
                         L.popup()
                             .setLatLng(e.latlng)
-                            .setContent('Ошибка загрузки данных.')
+                            .setContent('Нет объектов в месте клика.')
                             .openOn(map);
-                    });
-            };
+                        return;
+                    }
+
+                    fetch(urls[index])
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.features && data.features.length > 0) {
+                                if (highlightLayer) {
+                                    map.removeLayer(highlightLayer);
+                                }
+
+                                highlightLayer = L.geoJSON(data, {
+                                    pointToLayer: function (feature, latlng) {
+                                        return L.circleMarker(latlng, {
+                                            radius: 6,
+                                            fillColor: "#66ff7aff",
+                                            color: "#43ee3dff",
+                                            weight: 2,
+                                            opacity: 1,
+                                            fillOpacity: 0.5
+                                        });
+                                    },
+                                    style: {
+                                        color: '#43ee3dff',
+                                        weight: 2,
+                                        fillColor: '#66ff7aff',
+                                        fillOpacity: 0.4
+                                    }
+                                }).addTo(map);
+                                const props = data.features[0].properties;
+                                const content = Object.entries(props)
+                                    .map(([k, v]) => `<b>${k}</b>: ${v ?? ''}`)
+                                    .join('<br>');
+
+                                L.popup()
+                                    .setLatLng(e.latlng)
+                                    .setContent(content)
+                                    .openOn(map);
+                            } else {
+                                tryFetch(index + 1); // пробуем следующий слой
+                            }
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            tryFetch(index + 1); // в случае ошибки тоже пробуем следующий
+                        });
+                }
+
+                tryFetch(0); // запускаем с первой ссылки
+            }
 
             map.on('click', wfsClickHandler);
 
@@ -193,7 +244,10 @@ const baseLayers = {
 };
 
 const overlays = {
-    "WMS Будівлі": wmsLayer
+    "Будівлі": wmsLayer1,
+    "Заклади охорони здоровя": wmsLayer3,
+    "Фармацевтичні заклади": wmsLayer4,
+    "Заклади громадського харчування": wmsLayer2
 };
 
 function createCustomLayerControl(base, overlays, map, containerId) {
