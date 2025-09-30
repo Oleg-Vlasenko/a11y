@@ -38,7 +38,11 @@ const map = L.map('map', {
 }).setView([48.459898, 35.057008], 16);
 
 // Подложка
-const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+// const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//     maxZoom: 22,
+//     attribution: '© OpenStreetMap'
+// }).addTo(map);
+const osmLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     maxZoom: 22,
     attribution: '© OpenStreetMap'
 }).addTo(map);
@@ -46,78 +50,119 @@ const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
 const geoServerUrl = 'http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/wms';
 
 // WMS слои
-const wmsLayer1 = L.tileLayer.wms(geoServerUrl, {
+const wmsLayer_1 = L.tileLayer.wms(geoServerUrl, {
     layers: 'Dnepr:Будівлі',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }); //.addTo(map);
 
-const wmsLayer21 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:mindev_build_bad',
+const wmsLayer_2_1 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_build_admin_ok',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
-const wmsLayer22 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:mindev_build_ok',
+const wmsLayer_2_2 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_build_admin_bad',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
-const wmsLayer3 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:Заклади громадського харчування',
-    format: 'image/png',
-    transparent: true,
-    attribution: 'GeoServer Dnepr'
-});
-
-const wmsLayer4 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:Заклади охорони здоровя',
+const wmsLayer_3_1 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_build_education_ok',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
-const wmsLayer5 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:Фармацевтичні заклади',
+const wmsLayer_3_2 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_build_education_bad',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
-const wmsLayer61 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:mindev_streets_bad',
+const wmsLayer_4_1 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_build_health_ok',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
-const wmsLayer62 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:mindev_streets_ok',
+const wmsLayer_4_2 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_build_health_bad',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
-
-const wmsLayer7 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:mindev_stops_bads',
+const wmsLayer_5_1 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_build_residential_ok',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
-const wmsLayer81 = L.tileLayer.wms(geoServerUrl, {
+const wmsLayer_5_2 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_build_residential_bad',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
+}).addTo(map);
+
+const wmsLayer_6_1 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_build_other_ok',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
+}).addTo(map);
+
+const wmsLayer_6_2 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_build_other_bad',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
+}).addTo(map);
+
+const wmsLayer_7_1 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_street_network_ok',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
+}).addTo(map);
+
+const wmsLayer_7_2 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_street_network_bad',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
+}).addTo(map);
+
+const wmsLayer_8_1 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_transport_stops_ok',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
+}).addTo(map);
+
+const wmsLayer_8_2 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_transport_stops_bad',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
+}).addTo(map);
+
+const wmsLayer_9_1 = L.tileLayer.wms(geoServerUrl, {
     layers: 'Dnepr:line_traley',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
-const wmsLayer82 = L.tileLayer.wms(geoServerUrl, {
+const wmsLayer_9_2 = L.tileLayer.wms(geoServerUrl, {
     layers: 'Dnepr:line_tramvay',
     format: 'image/png',
     transparent: true,
@@ -195,13 +240,20 @@ sidebarBtns.forEach(btn => {
 
 
                 const urls = [
-                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mindev_build_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mindev_build_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mindev_streets_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mindev_streets_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mindev_stops_bads&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:Заклади охорони здоровя&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:Фармацевтичні заклади&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_admin_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_admin_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_education_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_education_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_health_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_health_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_residential_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_residential_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_other_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_other_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_street_network_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_street_network_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_transport_stops_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_transport_stops_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`
                 ];
 
                 function tryFetch(index) {
@@ -240,96 +292,166 @@ sidebarBtns.forEach(btn => {
 
                                 
                                 const featureId = data.features[0].id;
-                                console.log('featureId:');
-                                console.log(featureId);
                                 
                                 let imgFile;
                                 let objType;
                                 let objData;
 
-                                if (featureId == 'mindev_build_ok.1') {
-                                    imgFile = 'obj1.png';
-                                    objType = 'Школа';
-                                    objData = 'Средняя школа № 23, Соборна площа, 14';
+                                console.log(featureId);
+                                console.log(props);
+
+                                if (featureId == 'gms_build_admin_bad.1') {
+                                    imgFile = 'admin_bad_1.png';
+                                    objType = 'Адміністративні будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_admin_bad.2') {
+                                    imgFile = 'admin_bad_2.png';
+                                    objType = 'Адміністративні будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
                                     
-                                } else if (featureId == 'mindev_build_bad.1') {
-                                    imgFile = 'obj9.png';
-                                    objType = 'Будівля';
-                                    objData = 'Житловий будинок, вул. Яворницького, 14';
-
-                                } else if (featureId == 'mindev_build_bad.2') {
-                                    imgFile = 'obj2.png';
-                                    objType = 'Будівля';
-                                    objData = 'Житловий будинок, Соборна площа, 7-А';
+                                } else if (featureId == 'gms_build_admin_ok.1') {
+                                    imgFile = 'admin_ok_1.png';
+                                    objType = 'Адміністративні будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
                                     
-                                } else if (featureId == 'mindev_build_bad.3') {
-                                    imgFile = 'obj3.png';
-                                    objType = 'Будівля';
-                                    objData = 'Житловий будинок, Соборна площа, 6';
+                                } else if (featureId == 'gms_build_education_ok.1') {
+                                    imgFile = 'education_ok_1.png';
+                                    objType = 'Заклади освіти';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
                                     
-                                } else if (featureId == 'mindev_build_bad.4') {
-                                    imgFile = 'obj7.png';
-                                    objType = 'Будівля';
-                                    objData = 'Житловий будинок, Соборна площа, 20';
+                                } else if (featureId == 'gms_build_education_bad.1') {
+                                    imgFile = 'education_bad_1.png';
+                                    objType = 'Заклади освіти';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_education_bad.2') {
+                                    imgFile = 'education_bad_2.png';
+                                    objType = 'Заклади освіти';
+                                    objData = (props['name'] || '').trim();
+                                    // contentData = (props['descr'] || '').trim();
+                                    contentData = 'Необхідно впорядкувати вхідну групу, облаштувати пандус, встановити тактильну плитку та обладнати вбиральні відповідно до нормативів.';
+
+                                } else if (featureId == 'gms_build_health_ok.1') {
+                                    imgFile = 'gms_build_health_ok_1.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
                                     
-                                } else if (featureId == 'mindev_streets_ok.8') {
-                                    imgFile = 'obj4.png';
-                                    objType = 'Вуличний об`єкт';
-                                    objData = 'Дані у стані заповнення...';
+                                } else if (featureId == 'gms_build_health_ok.2') {
+                                    imgFile = 'gms_build_health_ok_2.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_build_health_bad.1') {
+                                    imgFile = 'gms_build_health_bad_1.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_build_health_bad.2') {
+                                    imgFile = 'gms_build_health_bad_2.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_build_residential_ok.1') {
+                                    imgFile = 'gms_build_residential_ok_1.png';
+                                    objType = 'Багатоквартирні будинки';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_build_residential_bad.1') {
+                                    imgFile = 'gms_build_residential_bad_1.png';
+                                    objType = 'Багатоквартирні будинки';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_build_residential_bad.2') {
+                                    imgFile = 'gms_build_residential_bad_2.png';
+                                    objType = 'Багатоквартирні будинки';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_build_other_ok.1') {
+                                    imgFile = 'gms_build_other_ok_1.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_build_other_ok.2') {
+                                    imgFile = 'gms_build_other_ok_2.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_build_other_bad.1') {
+                                    imgFile = 'gms_build_other_bad_1.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_build_other_bad.2') {
+                                    imgFile = 'gms_build_other_bad_2.png';
+                                    objType = 'Інші будівлі';
+                                    // objData = (props['name'] || '').trim();
+                                    objData = 'Кав`ярня "Чіп і Дейл"';
+                                    // contentData = (props['descr'] || '').trim();
+                                    contentData = 'Рекомендовано змінити вхідну групу, влаштувати нормативні сходи з поручнями, встановити підйомник, прибрати інформаційний шум та замінити дверні прорізи.';
+                                
+                                } else if (featureId == 'gms_street_network_ok.1') {
+                                    imgFile = 'gms_street_network_ok_1.png';
+                                    objType = 'Вулично-дорожня мережа';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_street_network_ok.2' || featureId == 'gms_street_network_ok.3') {
 
-                                } else if (featureId == 'mindev_streets_bad.4') {
-                                    imgFile = 'obj5.png';
-                                    objType = 'Вуличний об`єкт';
-                                    objData = 'Дані у стані заповнення...';
+                                    imgFile = 'gms_street_network_ok_2.png';
+                                    objType = 'Вулично-дорожня мережа';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (['gms_street_network_bad.1',
+                                            'gms_street_network_bad.2',
+                                            'gms_street_network_bad.3',
+                                            'gms_street_network_bad.4'].includes(featureId)) {
 
-                                } else if (featureId == 'mindev_streets_bad.5') {
-                                    imgFile = 'obj6.png';
-                                    objType = 'Вуличний об`єкт';
-                                    objData = 'Дані у стані заповнення...';
-
-                                } else if (featureId == 'mindev_streets_ok.10') {
-                                    imgFile = 'obj8.png';
-                                    objType = 'Вуличний об`єкт';
-                                    objData = 'Бульвар Яворницького. Безбар`єрний простір для прогулянок і відпочинку';
-
-                                } else if (featureId == 'mindev_stops_bads.4') {
-                                    imgFile = 'obj10.png';
-                                    objType = 'Зупинка транспорту';
-                                    objData = 'Зупинка трамваю';
-
-                                } else if (featureId == 'mindev_stops_bads.3') {
-                                    imgFile = 'obj11.png';
-                                    objType = 'Зупинка транспорту';
-                                    objData = 'Зупинка тролейбуса';
-
-                                } else if (featureId == 'mindev_stops_bads.2') {
-                                    imgFile = 'obj12.png';
-                                    objType = 'Зупинка транспорту';
-                                    objData = 'Зупинка трамваю';
-
-                                } else if (featureId == 'mindev_streets_bad.3') {
-                                    imgFile = 'obj14.png';
-                                    objType = 'Вуличний об`єкт';
-                                    objData = 'Територія скверу';
-
-                                } else if (featureId.startsWith('mindev_build')) {
-                                    imgFile = 'base_build.png';
-                                    objType = 'Будівля';
-
-                                } else if (featureId.startsWith('mindev_streets')) {
-                                    imgFile = 'base_street.png';
-                                    objType = 'Вуличний об`єкт';
-                                    objData = 'Дані у стані заповнення...';
-
-                                } else if (featureId.startsWith('mindev_stops')) {
-                                    imgFile = 'base_stop.png';
-                                    objType = 'Зупинка транспорту';
-                                    objData = 'Дані у стані заповнення...';
+                                    imgFile = 'gms_street_network_bad_1.png';
+                                    objType = 'Вулично-дорожня мережа';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_transport_stops_ok.1') {
+                                    imgFile = 'gms_street_network_ok_2.png';
+                                    objType = 'Зупинки громадського транспорту';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_transport_stops_ok.2') {
+                                    imgFile = 'gms_transport_stops_ok_2.png';
+                                    objType = 'Зупинки громадського транспорту';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
+                                } else if (featureId == 'gms_transport_stops_bad.1') {
+                                    imgFile = 'gms_transport_stops_bad_1.png';
+                                    objType = 'Зупинки громадського транспорту';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+                                    
 
                                 } else {
                                     imgFile = 'base_dnipro.png';
                                     objType = 'Об`єкт';
                                     objData = 'Дані у стані заповнення...';
+                                    contentData = 'Дані у стані заповнення...';
                                 }
 
                                 const content = `
@@ -413,20 +535,26 @@ const baseLayers = {
     "OpenStreetMap": osmLayer
 };
 
-// Создаем группу слоев для домов
-const housesGroup1 = L.layerGroup([wmsLayer21, wmsLayer22]);
-const housesGroup2 = L.layerGroup([wmsLayer61, wmsLayer62]);
-const housesGroup3 = L.layerGroup([wmsLayer81, wmsLayer82]);
+// Создаем группы слоев
+const layersGroup_2 = L.layerGroup([wmsLayer_2_1, wmsLayer_2_2]);
+const layersGroup_3 = L.layerGroup([wmsLayer_3_1, wmsLayer_3_2]);
+const layersGroup_4 = L.layerGroup([wmsLayer_4_1, wmsLayer_4_2]);
+const layersGroup_5 = L.layerGroup([wmsLayer_5_1, wmsLayer_5_2]);
+const layersGroup_6 = L.layerGroup([wmsLayer_6_1, wmsLayer_6_2]);
+const layersGroup_7 = L.layerGroup([wmsLayer_7_1, wmsLayer_7_2]);
+const layersGroup_8 = L.layerGroup([wmsLayer_8_1, wmsLayer_8_2]);
+const layersGroup_9 = L.layerGroup([wmsLayer_9_1, wmsLayer_9_2]);
 
 const overlays = {
-    "Безбар'єрність: Будівлі": housesGroup1,
-    "Безбар'єрність: Вулиці": housesGroup2,
-    "Безбар'єрність: Зупинки": wmsLayer7,
-    "Будівлі": wmsLayer1,
-    "Електротранспорт": housesGroup3,
-    "Заклади охорони здоровя": wmsLayer4,
-    "Фармацевтичні заклади": wmsLayer5,
-    "Заклади громадського харчування": wmsLayer3
+    "Безбар'єрність: Адміністративні будівлі": layersGroup_2,
+    "Безбар'єрність: Заклади освіти": layersGroup_3,
+    "Безбар'єрність: Установи охорони здоров`я": layersGroup_4,
+    "Безбар'єрність: Багатоквартирні будинки": layersGroup_5,
+    "Безбар'єрність: Інші будівлі": layersGroup_6,
+    "Безбар'єрність: Вулично-дорожня мережа": layersGroup_7,
+    "Безбар'єрність: Зупинки громадського транспорту": layersGroup_8,
+    "Будівлі": wmsLayer_1,
+    "Електротранспорт": layersGroup_9,
 };
 
 function createCustomLayerControl(base, overlays, map, containerId) {
@@ -584,7 +712,7 @@ document.addEventListener('DOMContentLoaded', function () {
 const mapContainer = map.getContainer();
 const titleDiv = document.createElement('div');
 titleDiv.className = 'leaflet-map-title';
-titleDiv.innerHTML = 'Мапа безбар\'єрності';
+titleDiv.innerHTML = 'Мапа безбар`єрності';
 titleDiv.style.cssText = `
     position: absolute;
     top: 20px;
@@ -596,7 +724,7 @@ titleDiv.style.cssText = `
     font-family: 'Ubuntu', sans-serif;
     font-size: 22px;
     font-weight: bold;
-    color: #0aa10aff;
+    color: #2389ddff;
     text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
     pointer-events: none;
 `;

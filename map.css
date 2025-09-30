@@ -31,7 +31,7 @@ body {
   height: 40px;
   margin: 16px 0 18px 0;
   border: none;
-  background: #23e5db;
+  background: #50b0ff;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -53,7 +53,7 @@ body {
 }
 
 .sidebar-logo-btn:focus-visible {
-  box-shadow: 0 0 0 2px #23e5db99;
+  box-shadow: 0 0 0 2px #72b4ff;
 }
 
 .sidebar-btn {
@@ -108,7 +108,7 @@ body {
   height: 100%;
   width: 4px;
   border-radius: 2px;
-  background: #23e5db;
+  background: #90c4ff;
 }
 
 .sidebar-bottom {
@@ -140,7 +140,7 @@ body {
 .custom-zoom-btn,
 .custom-layer-btn {
   background: #fff;
-  color: #00cc99;
+  color: #72b4ff;
   transition: background .2s, color .2s;
   border: none;
   border-radius: 9.6px;
@@ -162,7 +162,7 @@ body {
 .custom-controls .custom-fullscreen-btn svg,
 .custom-zoom-btn svg,
 .custom-layer-btn svg {
-  stroke: #00cc99;
+  stroke: #377fb9;
   fill: none;
   transition: stroke .2s;
   width: 22.4px;
@@ -177,7 +177,7 @@ body {
 .custom-zoom-btn:focus-visible,
 .custom-layer-btn:hover,
 .custom-layer-btn:focus-visible {
-  background: #00cc99;
+  background: rgba(50, 120, 177, 0.548);
   color: #fff;
 }
 
@@ -279,7 +279,7 @@ body {
   top: 2px;
   width: 18px;
   height: 18px;
-  border: 2px solid #00cc99;
+  border: 2px solid #4ca0ff;
   border-radius: 6px;
   background: #fff;
   box-sizing: border-box;
@@ -300,8 +300,8 @@ body {
 }
 
 .custom-layer-control input[type="checkbox"]:checked+label:before {
-  background: #00cc99;
-  border-color: #00cc99;
+  background: #72b4ff;
+  border-color: #72b4ff;
 }
 
 .custom-layer-control input[type="radio"]+label:before {
@@ -309,8 +309,8 @@ body {
 }
 
 .custom-layer-control input[type="radio"]:checked+label:before {
-  background: #00cc99;
-  border-color: #00cc99;
+  background: #72b4ff;
+  border-color: #72b4ff;
 }
 
 .custom-layer-control input[type="radio"]:checked+label:after {
@@ -426,9 +426,9 @@ body {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
-  color: #11d1c1;
+  color: #72b4ff;
   background-color: transparent;
-  border: 1px solid #11d1c1;
+  border: 1px solid #72b4ff;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
@@ -436,8 +436,8 @@ body {
 
 #popupBtn:hover {
   color: #fff;
-  background-color: #11d1c1;
-  border-color: #11d1c1;
+  background-color: #72b4ff;
+  border-color: #72b4ff;
 }
 
 #popupTextarea {
@@ -452,7 +452,7 @@ body {
   color: #333;
   /* обычный текст */
   background-color: transparent;
-  border: 1px solid #11d1c1;
+  border: 1px solid #72b4ff;
   border-radius: 4px;
   resize: vertical;
   transition: all 0.15s ease-in-out;
@@ -462,9 +462,9 @@ body {
 /* При фокусе — как у hover на кнопке */
 #popupTextarea:focus {
   outline: none;
-  border-color: #11d1c1;
-  background-color: rgba(17, 209, 193, 0.05);
-  box-shadow: 0 0 4px rgba(17, 209, 193, 0.5);
+  border-color: #72b4ff;
+  background-color: rgba(78, 161, 255, 0.055);
+  box-shadow: 0 0 4px rgba(17, 116, 209, 0.5);
 }
 
 #settingsPopup {
@@ -481,15 +481,15 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #fff;
-  background-color: #11beb0ff;
-  border: 1px solid #11d1c1;
+  background-color: #72b4ff;
+  border: 1px solid #72b4ff;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
 }
 
 #adminBtn:hover {
-    background: #0b9488ff;
+    background: #4fa1ff;
 }
 
 #adminBtn .material-symbols-outlined {
@@ -501,7 +501,7 @@ body {
 
 #settingsPopup h3 {
   font-family: 'Ubuntu', sans-serif;
-  color: rgb(9, 158, 146);
+  color: rgb(44, 92, 224);
   text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
 }
 
