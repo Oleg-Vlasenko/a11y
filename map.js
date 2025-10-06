@@ -173,6 +173,14 @@ const wmsLayer_9_2 = L.tileLayer.wms(geoServerUrl, {
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
+const wmsLayer_10_2 = L.tileLayer.wms(geoServerUrl, {
+    layers: 'Dnepr:gms_park_public_bad',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'GeoServer Dnepr'
+}).addTo(map);
+
+
 
 let highlightLayer;
 
@@ -257,7 +265,8 @@ sidebarBtns.forEach(btn => {
                     `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_street_network_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
                     `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_street_network_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
                     `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_transport_stops_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_transport_stops_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_transport_stops_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+                    `http://inetzp.cloud-ip.biz:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_park_public_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`
                 ];
 
                 function tryFetch(index) {
@@ -301,45 +310,69 @@ sidebarBtns.forEach(btn => {
                                 let objType;
                                 let objData;
 
-                                console.log(featureId);
-                                console.log(props);
+                                _cl(featureId);
+                                _cl(props);
 
                                 if (featureId == 'gms_build_admin_bad.1') {
-                                    imgFile = 'admin_bad_1.png';
+                                    imgFile = 'gms_build_admin_bad_1.png';
                                     objType = 'Адміністративні будівлі';
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
 
                                 } else if (featureId == 'gms_build_admin_bad.2') {
-                                    imgFile = 'admin_bad_2.png';
+                                    imgFile = 'gms_build_admin_bad_2.png';
+                                    objType = 'Адміністративні будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_admin_bad.3') {
+                                    imgFile = 'gms_build_admin_bad_3.png';
+                                    objType = 'Адміністративні будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_admin_bad.4') {
+                                    imgFile = 'gms_build_admin_bad_4.png';
+                                    objType = 'Адміністративні будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_admin_bad.5') {
+                                    imgFile = 'gms_build_admin_bad_5.png';
                                     objType = 'Адміністративні будівлі';
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
 
                                 } else if (featureId == 'gms_build_admin_ok.1') {
-                                    imgFile = 'admin_ok_1.png';
+                                    imgFile = 'gms_build_admin_ok_1.png';
                                     objType = 'Адміністративні будівлі';
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
 
                                 } else if (featureId == 'gms_build_education_ok.1') {
-                                    imgFile = 'education_ok_1.png';
+                                    imgFile = 'gms_build_education_ok_1.png';
                                     objType = 'Заклади освіти';
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
 
                                 } else if (featureId == 'gms_build_education_bad.1') {
-                                    imgFile = 'education_bad_1.png';
+                                    imgFile = 'gms_build_education_bad_1.png';
                                     objType = 'Заклади освіти';
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
 
                                 } else if (featureId == 'gms_build_education_bad.2') {
-                                    imgFile = 'education_bad_2.png';
+                                    imgFile = 'gms_build_education_bad_2.png';
                                     objType = 'Заклади освіти';
                                     objData = (props['name'] || '').trim();
-                                    // contentData = (props['descr'] || '').trim();
-                                    contentData = 'Необхідно впорядкувати вхідну групу, облаштувати пандус, встановити тактильну плитку та обладнати вбиральні відповідно до нормативів.';
+                                    contentData = (props['descr'] || '').trim();
+                                    // contentData = 'Необхідно впорядкувати вхідну групу, облаштувати пандус, встановити тактильну плитку та обладнати вбиральні відповідно до нормативів.';
+
+                                } else if (featureId == 'gms_build_education_bad.3') {
+                                    imgFile = 'gms_build_education_bad_3.png';
+                                    objType = 'Заклади освіти';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
 
                                 } else if (featureId == 'gms_build_health_ok.1') {
                                     imgFile = 'gms_build_health_ok_1.png';
@@ -353,6 +386,30 @@ sidebarBtns.forEach(btn => {
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
 
+                                } else if (featureId == 'gms_build_health_ok.3') {
+                                    imgFile = 'gms_build_health_ok_3.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_health_ok.4') {
+                                    imgFile = 'gms_build_health_ok_4.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_health_ok.5') {
+                                    imgFile = 'gms_build_health_ok_5.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_health_ok.6') {
+                                    imgFile = 'gms_build_health_ok_6.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
                                 } else if (featureId == 'gms_build_health_bad.1') {
                                     imgFile = 'gms_build_health_bad_1.png';
                                     objType = 'Установи охорони здоров`я';
@@ -361,6 +418,36 @@ sidebarBtns.forEach(btn => {
 
                                 } else if (featureId == 'gms_build_health_bad.2') {
                                     imgFile = 'gms_build_health_bad_2.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_health_bad.3') {
+                                    imgFile = 'gms_build_health_bad_3.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_health_bad.4') {
+                                    imgFile = 'gms_build_health_bad_4.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_health_bad.5') {
+                                    imgFile = 'gms_build_health_bad_5.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_health_bad.6') {
+                                    imgFile = 'gms_build_health_bad_6.png';
+                                    objType = 'Установи охорони здоров`я';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_health_bad.7') {
+                                    imgFile = 'gms_build_health_bad_7.png';
                                     objType = 'Установи охорони здоров`я';
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
@@ -383,6 +470,42 @@ sidebarBtns.forEach(btn => {
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
 
+                                } else if (featureId == 'gms_build_residential_bad.3') {
+                                    imgFile = 'gms_build_residential_bad_3.png';
+                                    objType = 'Багатоквартирні будинки';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_residential_bad.4') {
+                                    imgFile = 'gms_build_residential_bad_4.png';
+                                    objType = 'Багатоквартирні будинки';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_residential_bad.5') {
+                                    imgFile = 'gms_build_residential_bad_5.png';
+                                    objType = 'Багатоквартирні будинки';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_residential_bad.6') {
+                                    imgFile = 'gms_build_residential_bad_6.png';
+                                    objType = 'Багатоквартирні будинки';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_residential_bad.7') {
+                                    imgFile = 'gms_build_residential_bad_7.png';
+                                    objType = 'Багатоквартирні будинки';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_residential_bad.8') {
+                                    imgFile = 'gms_build_residential_bad_8.png';
+                                    objType = 'Багатоквартирні будинки';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
                                 } else if (featureId == 'gms_build_other_ok.1') {
                                     imgFile = 'gms_build_other_ok_1.png';
                                     objType = 'Інші будівлі';
@@ -391,6 +514,24 @@ sidebarBtns.forEach(btn => {
 
                                 } else if (featureId == 'gms_build_other_ok.2') {
                                     imgFile = 'gms_build_other_ok_2.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_other_ok.3') {
+                                    imgFile = 'gms_build_other_ok_3.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_other_ok.4') {
+                                    imgFile = 'gms_build_other_ok_4.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_other_ok.5') {
+                                    imgFile = 'gms_build_other_ok_5.png';
                                     objType = 'Інші будівлі';
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
@@ -404,10 +545,66 @@ sidebarBtns.forEach(btn => {
                                 } else if (featureId == 'gms_build_other_bad.2') {
                                     imgFile = 'gms_build_other_bad_2.png';
                                     objType = 'Інші будівлі';
-                                    // objData = (props['name'] || '').trim();
-                                    objData = 'Кав`ярня "Чіп і Дейл"';
-                                    // contentData = (props['descr'] || '').trim();
-                                    contentData = 'Рекомендовано змінити вхідну групу, влаштувати нормативні сходи з поручнями, встановити підйомник, прибрати інформаційний шум та замінити дверні прорізи.';
+                                    objData = (props['name'] || '').trim();
+                                    // objData = 'Кав`ярня "Чіп і Дейл"';
+                                    contentData = (props['descr'] || '').trim();
+                                    // contentData = 'Рекомендовано змінити вхідну групу, влаштувати нормативні сходи з поручнями, встановити підйомник, прибрати інформаційний шум та замінити дверні прорізи.';
+
+                                } else if (featureId == 'gms_build_other_bad.3') {
+                                    imgFile = 'gms_build_other_bad_3.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (['gms_build_other_bad.4',
+                                    'gms_build_other_bad.5',
+                                    'gms_build_other_bad.6'].includes(featureId)) {
+                                    imgFile = 'gms_build_other_bad_4.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_other_bad.7') {
+                                    imgFile = 'gms_build_other_bad_7.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_other_bad.8') {
+                                    imgFile = 'gms_build_other_bad_8.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_other_bad.9') {
+                                    imgFile = 'gms_build_other_bad_9.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_other_bad.10') {
+                                    imgFile = 'gms_build_other_bad_10.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_other_bad.11') {
+                                    imgFile = 'gms_build_other_bad_11.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_other_bad.12') {
+                                    imgFile = 'gms_build_other_bad_12.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_build_other_bad.13') {
+                                    imgFile = 'gms_build_other_bad_13.png';
+                                    objType = 'Інші будівлі';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
 
                                 } else if (featureId == 'gms_street_network_ok.1') {
                                     imgFile = 'gms_street_network_ok_1.png';
@@ -421,19 +618,57 @@ sidebarBtns.forEach(btn => {
                                     objType = 'Вулично-дорожня мережа';
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
-
-                                } else if (['gms_street_network_bad.1',
-                                    'gms_street_network_bad.2',
-                                    'gms_street_network_bad.3',
-                                    'gms_street_network_bad.4'].includes(featureId)) {
-
-                                    imgFile = 'gms_street_network_bad_1.png';
+                                
+                                } else if (featureId == 'gms_street_network_ok.4') {
+                                    imgFile = 'gms_street_network_ok_4.png';
                                     objType = 'Вулично-дорожня мережа';
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
 
+                                
+                                } else if (featureId.startsWith('gms_street_network_bad.')) {
+                                    let num = parseInt(featureId.split('.')[1], 10);
+
+                                    if (num >= 1 && num <= 8) {
+                                        imgFile = 'gms_street_network_bad_1.png';
+                                        objType = 'Вулично-дорожня мережа';
+                                        objData = (props['name'] || '').trim();
+                                        contentData = (props['descr'] || '').trim();
+
+                                    } else if (num >= 9 && num <= 11) {
+                                        imgFile = 'gms_street_network_bad_2.png';
+                                        objType = 'Вулично-дорожня мережа';
+                                        objData = (props['name'] || '').trim();
+                                        contentData = (props['descr'] || '').trim();
+
+                                    } else if (num >= 12 && num <= 16) {
+                                        imgFile = 'gms_street_network_bad_3.png';
+                                        objType = 'Вулично-дорожня мережа';
+                                        objData = (props['name'] || '').trim();
+                                        contentData = (props['descr'] || '').trim();
+
+                                    } else if (num >= 17 && num <= 28) {
+                                        imgFile = 'gms_street_network_bad_4.png';
+                                        objType = 'Вулично-дорожня мережа';
+                                        objData = (props['name'] || '').trim();
+                                        contentData = (props['descr'] || '').trim();
+                                    }
+
+                                
                                 } else if (featureId == 'gms_transport_stops_ok.1') {
                                     imgFile = 'gms_street_network_ok_2.png';
+                                    objType = 'Зупинки громадського транспорту';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_transport_stops_bad.1') {
+                                    imgFile = 'gms_transport_stops_bad_1.png';
+                                    objType = 'Зупинки громадського транспорту';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_transport_stops_bad.2') {
+                                    imgFile = 'gms_transport_stops_bad_2.png';
                                     objType = 'Зупинки громадського транспорту';
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
@@ -444,9 +679,15 @@ sidebarBtns.forEach(btn => {
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
 
-                                } else if (featureId == 'gms_transport_stops_bad.1') {
-                                    imgFile = 'gms_transport_stops_bad_1.png';
-                                    objType = 'Зупинки громадського транспорту';
+                                } else if (featureId == 'gms_park_public_bad.1') {
+                                    imgFile = 'gms_park_public_bad_1.png';
+                                    objType = 'Парки та сквери';
+                                    objData = (props['name'] || '').trim();
+                                    contentData = (props['descr'] || '').trim();
+
+                                } else if (featureId == 'gms_park_public_bad.2') {
+                                    imgFile = 'gms_park_public_bad_2.png';
+                                    objType = 'Парки та сквери';
                                     objData = (props['name'] || '').trim();
                                     contentData = (props['descr'] || '').trim();
 
@@ -548,6 +789,7 @@ const layersGroup_6 = L.layerGroup([wmsLayer_6_1, wmsLayer_6_2]);
 const layersGroup_7 = L.layerGroup([wmsLayer_7_1, wmsLayer_7_2]);
 const layersGroup_8 = L.layerGroup([wmsLayer_8_1, wmsLayer_8_2]);
 const layersGroup_9 = L.layerGroup([wmsLayer_9_1, wmsLayer_9_2]);
+const layersGroup_10 = L.layerGroup([wmsLayer_10_2]);
 
 const overlays = {
     "Безбар`єрність: Адміністративні будівлі": layersGroup_2,
@@ -557,8 +799,9 @@ const overlays = {
     "Безбар`єрність: Інші будівлі": layersGroup_6,
     "Безбар`єрність: Вулично-дорожня мережа": layersGroup_7,
     "Безбар`єрність: Зупинки громадського транспорту": layersGroup_8,
+    "Безбар`єрність: Парки та сквери": layersGroup_10,
     "Будівлі": wmsLayer_1,
-    "Електротранспорт": layersGroup_9,
+    "Електротранспорт": layersGroup_9
 };
 
 const overlayIcons = {
@@ -569,8 +812,9 @@ const overlayIcons = {
     "Безбар`єрність: Інші будівлі": "lr6",
     "Безбар`єрність: Вулично-дорожня мережа": "lr7",
     "Безбар`єрність: Зупинки громадського транспорту": "lr8",
+    "Безбар`єрність: Парки та сквери": "lr10",
     "Будівлі": "none",
-    "Електротранспорт": "none",
+    "Електротранспорт": "none"
 };
 
 function createCustomLayerControl(base, overlays, map, containerId) {
@@ -818,7 +1062,7 @@ map.on('popupopen', function (e) {
                 body: "message=" + encodeURIComponent(text)
             })
                 .then(response => response.text())   // читаем ответ как текст
-                .then(data => console.log("Ответ PHP:", data))  // выводим в консоль
+                .then(data => _cl("Ответ PHP:", data))  // выводим в консоль
                 .catch(err => console.error("Ошибка отправки:", err));
 
             if (areaContainer) {
