@@ -37,9 +37,30 @@ function disablePinMode() {
     map.closePopup();
 }
 
+let initialLat, initialLng, initialZoom;
+
+// Проверяем ширину экрана
+if (window.innerWidth <= 768) {
+    // Мобильный экран
+    // initialLat = 48.4605;
+    initialLat = 48.4595; // координаты для моб версии
+    // initialLng = 35.0585;
+    initialLng = 35.065;
+    initialZoom = 16;
+} else {
+    // Десктоп
+    initialLat = 48.459898;
+    initialLng = 35.057008;
+    initialZoom = 16;
+}
 const map = L.map('map', {
-    zoomControl: false // Hide native zoom
-}).setView([48.459898, 35.057008], 16);
+    zoomControl: false
+}).setView([initialLat, initialLng], initialZoom);
+
+// const map = L.map('map', {
+//     zoomControl: false // Hide native zoom
+// }).setView([48.459898, 35.057008], 16);
+
 
 // Подложка
 // const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
