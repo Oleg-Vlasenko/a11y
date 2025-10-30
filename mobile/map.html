@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar" id="sidebar" style="display: none !important">
         <button class="sidebar-logo-btn" title="Logo / Current" tabindex="0">
             <svg viewBox="0 0 24 24">
                 <polygon points="12,4 15,16 12,13 9,16" />
@@ -59,38 +59,44 @@
         <p>Це робоча область віджету або кабінету користувача.</p>
     </div>
 
-    <div class="custom-controls" id="customControls">
-        <button class="custom-fullscreen-btn" id="fullscreenBtn" title="Fullscreen" tabindex="0">
+    <div class="map-controls">
+        <!-- 1. Fullscreen -->
+        <button class="ctrl-btn" id="fullscreenBtn" title="На весь экран">
             <svg viewBox="0 0 28 28">
-                <polyline points="5,12 5,5 12,5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <polyline points="23,12 23,5 16,5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <polyline points="23,16 23,23 16,23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <polyline points="5,16 5,23 12,23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <polyline points="8,4 4,4 4,8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                </polyline>
+                <polyline points="20,4 24,4 24,8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                </polyline>
+                <polyline points="8,24 4,24 4,20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                </polyline>
+                <polyline points="20,24 24,24 24,20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                </polyline>
             </svg>
         </button>
-        <div class="custom-zoom" id="customZoom">
-            <button class="custom-zoom-btn" id="zoom-in" title="Zoom in">
-                <svg viewBox="0 0 28 28">
-                    <line x1="14" y1="8" x2="14" y2="20" stroke-width="2" stroke-linecap="round" />
-                    <line x1="8" y1="14" x2="20" y2="14" stroke-width="2" stroke-linecap="round" />
-                </svg>
-            </button>
-            <button class="custom-zoom-btn" id="zoom-out" title="Zoom out">
-                <svg viewBox="0 0 28 28">
-                    <line x1="8" y1="14" x2="20" y2="14" stroke-width="2" stroke-linecap="round" />
-                </svg>
-            </button>
-        </div>
-        <div class="custom-layer-control-group">
-            <button class="custom-layer-btn" id="customLayerBtn" title="Слои" tabindex="0">
-                <svg viewBox="0 0 28 28">
-                    <line x1="7" y1="8" x2="21" y2="8" stroke-width="2" stroke-linecap="round" />
-                    <line x1="7" y1="14" x2="21" y2="14" stroke-width="1.4" stroke-linecap="round" />
-                    <line x1="7" y1="20" x2="21" y2="20" stroke-width="2" stroke-linecap="round" />
-                </svg>
-            </button>
-            <div class="custom-layer-control" id="customLayerControl"></div>
-        </div>
+
+        <!-- 2. Zoom In -->
+        <button class="ctrl-btn" id="zoom-in" title="Приблизить">
+            <svg viewBox="0 0 28 28">
+                <line x1="14" y1="8" x2="14" y2="20" stroke-width="2" stroke-linecap="round"></line>
+                <line x1="8" y1="14" x2="20" y2="14" stroke-width="2" stroke-linecap="round"></line>
+            </svg>
+        </button>
+
+        <!-- 3. Zoom Out -->
+        <button class="ctrl-btn" id="zoom-out" title="Отдалить">
+            <svg viewBox="0 0 28 28">
+                <line x1="8" y1="14" x2="20" y2="14" stroke-width="2" stroke-linecap="round"></line>
+            </svg>
+        </button>
+
+        <!-- 4. Layers -->
+        <button class="ctrl-btn" id="customLayerBtn" title="Слои">
+            <svg viewBox="0 0 28 28">
+                <polygon points="4,10 14,4 24,10 14,16" stroke-width="2" stroke-linejoin="round"></polygon>
+                <polygon points="4,18 14,12 24,18 14,24" stroke-width="2" stroke-linejoin="round"></polygon>
+            </svg>
+        </button>
+        <div class="custom-layer-control" id="customLayerControl"></div>
     </div>
 
     <div id="map">

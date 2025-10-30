@@ -260,7 +260,7 @@ folderPopup.classList.remove('active');
 settingsPopup.style.display = 'none';
 
 // Устанавливаем курсор
-map.getContainer().style.cursor = "crosshair";
+map.getContainer().style.cursor = "auto";
 
 // Устанавливаем обработчик клика по карте
 wfsClickHandler = function (e) {
@@ -960,6 +960,13 @@ titleDiv.style.cssText = `
     text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
     pointer-events: none;
 `;
+
+// Подстройка для мобильных экранов
+if (window.innerWidth <= 768) { // например, до 768px — мобильный экран
+    titleDiv.style.top = '0';
+    titleDiv.style.left = '0';
+}
+
 mapContainer.appendChild(titleDiv);
 
 map.on('popupopen', function (e) {
