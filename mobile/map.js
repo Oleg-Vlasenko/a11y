@@ -742,30 +742,102 @@ wfsClickHandler = function (e) {
                         contentData = 'Дані у стані заповнення...';
                     }
 
-                    const content = `
-                                    <div style="width:300px;">
-                                        <h4>Тип об'єкту:</h4>
-                                        <p>${objType}</p>
-                                        <h4>Дані:</h4>
-                                        <p>${objData}</p>
-                                        <h4>Опис об'єкту:</h4>
-                                        <p>${contentData}</p>
-                                        <img src="images/${imgFile}" alt="Будинок" style="width:100%; height:auto;"/>
-                                        <button id="popupBtn">Додати інформацію</button>
-                                        <div id="popupArea" class="openTxtArea"></div>
-                                    </div>
-                                `;
+                    // const content = `
+                    //     <div style="width:300px;">
+                    //     <h4>Тип об'єкту:</h4>
+                    //     <p>${objType}</p>
+                    //     <h4>Дані:</h4>
+                    //     <p>${objData}</p>
+                    //     <h4>Опис об'єкту:</h4>
+                    //     <p>${contentData}</p>
+                    //     <img src="images/${imgFile}" alt="Будинок" style="width:100%; height:auto;"/>
+                    //     <button id="popupBtn">Додати інформацію</button>
+                    //     <div id="popupArea" class="openTxtArea"></div>
+                    //     </div>
+                    // `;
 
-                    window._tst11__send_info = false;
+                    // window._tst11__send_info = false;
 
-                    const popup = L.popup()
-                        .setLatLng(e.latlng)
-                        .setContent(content)
-                        .openOn(map);
+                    // const popup = L.popup()
+                    //     .setLatLng(e.latlng)
+                    //     .setContent(content)
+                    //     .openOn(map);
 
-                    setTimeout(() => {
-                        popup._adjustPan();
-                    }, 10);
+                    // setTimeout(() => {
+                    //     popup._adjustPan();
+                    // }, 10);
+
+
+                    const isMobile = window.innerWidth <= 768; // определяем мобильное устройство
+
+                    if (!isMobile) {
+                        // --- Десктопный popup ---
+                        const content = `
+                            <div style="width:300px;">
+                                <h4>Тип об'єкту:</h4>
+                                <p>${objType}</p>
+                                <h4>Дані:</h4>
+                                <p>${objData}</p>
+                                <h4>Опис об'єкту:</h4>
+                                <p>${contentData}</p>
+                                <img src="images/${imgFile}" alt="Будинок" style="width:100%; height:auto;"/>
+                                <button id="popupBtn">Додати інформацію</button>
+                                <div id="popupArea" class="openTxtArea"></div>
+                            </div>
+                        `;
+
+                        window._tst11__send_info = false;
+
+                        const popup = L.popup()
+                            .setLatLng(e.latlng)
+                            .setContent(content)
+                            .openOn(map);
+
+                        setTimeout(() => {
+                            popup._adjustPan();
+                        }, 10);
+
+                    } else {
+                        // --- Мобильный fullscreen popup ---
+                        let popupDiv = document.getElementById('mobilePopup');
+
+                        // Если ещё нет div, создаём
+                        if (!popupDiv) {
+                            popupDiv = document.createElement('div');
+                            popupDiv.id = 'mobilePopup';
+                            popupDiv.innerHTML = `
+                                <div class="mobile-popup-content">
+                                    <button id="mobileClose">✕</button>
+                                    <h4>Тип об'єкту:</h4>
+                                    <p id="objType"></p>
+                                    <h4>Дані:</h4>
+                                    <p id="objData"></p>
+                                    <h4>Опис об'єкту:</h4>
+                                    <p id="contentData"></p>
+                                    <img id="objImg" src="" alt="Будинок" style="width:100%; height:auto;">
+                                    <button id="popupBtn">Додати інформацію</button>
+                                    <div id="popupArea" class="openTxtArea"></div>
+                                </div>
+                            `;
+                            document.body.appendChild(popupDiv);
+
+                            // Закрытие
+                            popupDiv.querySelector('#mobileClose').onclick = () => {
+                                popupDiv.style.display = 'none';
+                            };
+                        }
+
+                        // Заполняем контент
+                        popupDiv.style.display = 'block';
+                        popupDiv.querySelector('#objType').textContent = objType;
+                        popupDiv.querySelector('#objData').textContent = objData;
+                        popupDiv.querySelector('#contentData').textContent = contentData;
+                        popupDiv.querySelector('#objImg').src = 'images/' + imgFile;
+
+                        window._tst11__send_info = false; // сбрасываем флаг для textarea
+                    }
+
+
 
                 } else {
                     tryFetch(index + 1); // пробуем следующий слой

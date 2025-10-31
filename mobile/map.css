@@ -529,3 +529,27 @@ body {
   margin-left: 6px;
   vertical-align: middle;
 }
+
+/* del */
+
+
+#mobilePopup {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 10000;
+}
+
+#mobilePopup .mobile-popup-content {
+    position: absolute;
+    top: 50px;       /* отступ сверху */
+    left: 10px;
+    right: 10px;
+    bottom: 50px;
+    background: white;
+    padding: 15px;
+    overflow-y: auto;
+    border-radius: 8px;
+}
