@@ -57,10 +57,6 @@ const map = L.map('map', {
     zoomControl: false
 }).setView([initialLat, initialLng], initialZoom);
 
-// const map = L.map('map', {
-//     zoomControl: false // Hide native zoom
-// }).setView([48.459898, 35.057008], 16);
-
 
 // Подложка
 // const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -742,32 +738,6 @@ wfsClickHandler = function (e) {
                         contentData = 'Дані у стані заповнення...';
                     }
 
-                    // const content = `
-                    //     <div style="width:300px;">
-                    //     <h4>Тип об'єкту:</h4>
-                    //     <p>${objType}</p>
-                    //     <h4>Дані:</h4>
-                    //     <p>${objData}</p>
-                    //     <h4>Опис об'єкту:</h4>
-                    //     <p>${contentData}</p>
-                    //     <img src="images/${imgFile}" alt="Будинок" style="width:100%; height:auto;"/>
-                    //     <button id="popupBtn">Додати інформацію</button>
-                    //     <div id="popupArea" class="openTxtArea"></div>
-                    //     </div>
-                    // `;
-
-                    // window._tst11__send_info = false;
-
-                    // const popup = L.popup()
-                    //     .setLatLng(e.latlng)
-                    //     .setContent(content)
-                    //     .openOn(map);
-
-                    // setTimeout(() => {
-                    //     popup._adjustPan();
-                    // }, 10);
-
-
                     const isMobile = window.innerWidth <= 768; // определяем мобильное устройство
 
                     if (!isMobile) {
@@ -795,11 +765,25 @@ wfsClickHandler = function (e) {
 
                         setTimeout(() => {
                             popup._adjustPan();
+
+                            setTimeout(() => {
+                                popup._adjustPan();
+                            }, 10);
                         }, 10);
 
+                        // Обработчики кнопок в десктоп версии повешены на map.on('popupopen', function (e) {} )
+
                     } else {
+
                         // --- Мобильный fullscreen popup ---
                         let popupDiv = document.getElementById('mobilePopup');
+
+                        // Моб хром в fullscreen закрывает клавиатурой окно ввода, гугл это не полечил,
+                        // по этому перед всплывашкой отключаем fullscreen, а при ее закрытии - включаем
+                        let isMobFullscreen = document.fullscreenElement;
+                        if (isMobFullscreen) {
+                            document.exitFullscreen();
+                        };
 
                         // Если ещё нет div, создаём
                         if (!popupDiv) {
@@ -807,7 +791,6 @@ wfsClickHandler = function (e) {
                             popupDiv.id = 'mobilePopup';
                             popupDiv.innerHTML = `
                                 <div class="mobile-popup-content">
-                                    <button id="mobileClose">✕</button>
                                     <h4>Тип об'єкту:</h4>
                                     <p id="objType"></p>
                                     <h4>Дані:</h4>
@@ -815,16 +798,104 @@ wfsClickHandler = function (e) {
                                     <h4>Опис об'єкту:</h4>
                                     <p id="contentData"></p>
                                     <img id="objImg" src="" alt="Будинок" style="width:100%; height:auto;">
-                                    <button id="popupBtn">Додати інформацію</button>
+                                    <button id="mobPopupBtn">Додати інформацію</button>
+                                    <button id="mobCloseBtn" style="margin-left:10px;">Закрити</button>
                                     <div id="popupArea" class="openTxtArea"></div>
                                 </div>
                             `;
-                            document.body.appendChild(popupDiv);
 
-                            // Закрытие
-                            popupDiv.querySelector('#mobileClose').onclick = () => {
+
+                            document.body.appendChild(popupDiv);
+                        }
+
+                        // В моб версии все обработчики прямо здесь
+
+                        // Закрытие
+                        popupDiv.querySelector('#mobCloseBtn').onclick = (e) => {
+                            const root = e.target.closest('#mobilePopup');
+                            const areaContainer = root.querySelector('#popupArea');
+                            const btn = root.querySelector('#mobPopupBtn');
+
+                            btn.textContent = "Додати інформацію";
+                            areaContainer.innerHTML = '';
+                            window._tst11__send_info = false;
+
+                            // Если перед открытием всплывашки был fullscreen - возвращаем его
+                            if (isMobFullscreen) {
+                                document.documentElement.requestFullscreen();
+                            }
+
+                            popupDiv.style.display = 'none';
+                        };
+
+                        // Отправить сообщение в админку сайта
+                        popupDiv.querySelector('#mobPopupBtn').onclick = (e) => {
+                            const root = e.target.closest('#mobilePopup');
+                            const rootInsideBox = root.querySelector('.mobile-popup-content');
+                            const btn = root.querySelector('#mobPopupBtn');
+                            const areaContainer = root.querySelector('#popupArea');
+                            let ta = root.querySelector('#popupTextarea');
+
+                            if (!window._tst11__send_info) {
+
+                                if (!areaContainer) return;
+
+                                // не создаём второй textarea, если уже есть
+                                if (!ta) {
+                                    areaContainer.innerHTML = `
+                                        <textarea id="popupTextarea" rows="10" style="width:100%; margin-top:8px;"></textarea>
+                                    `;
+                                    ta = root.querySelector('#popupTextarea');
+                                }
+                                if (ta) ta.focus();
+
+                                btn.textContent = "Надіслати";
+                                window._tst11__send_info = true;
+
+                                setTimeout(() => {
+                                    rootInsideBox.scrollTop = rootInsideBox.scrollHeight;
+                                }, 50);
+
+                            } else {
+
+                                // Берём текст пользователя
+                                const text = ta ? ta.value.trim() : "";
+
+                                if (text == "") {
+                                    alert('Не введено інформацію!');
+                                    return;
+                                }
+
+                                fetch("php/bid.php", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/x-www-form-urlencoded"
+                                    },
+                                    body: "message=" + encodeURIComponent(text)
+                                })
+                                    .then(response => response.text())   // читаем ответ как текст
+                                    .then(data => _cl("Ответ PHP:", data))  // выводим в консоль
+                                    .catch(err => console.error("Ошибка отправки:", err));
+
+                                btn.textContent = "Додати інформацію";
+                                areaContainer.innerHTML = '';
+                                window._tst11__send_info = false;
+
+                                // Закрываем текущий popup
                                 popupDiv.style.display = 'none';
-                            };
+
+                                setTimeout(() => {
+                                    alert("Ваша інформація надіслана адміністратору системи.\nПісля її перевірки вона буде розміщена на карті.");
+
+
+                                    // Если перед открытием всплывашки был fullscreen - возвращаем его
+                                    if (isMobFullscreen) {
+                                        document.documentElement.requestFullscreen();
+                                    }
+                                }, 200);
+
+                            }
+
                         }
 
                         // Заполняем контент
@@ -836,8 +907,6 @@ wfsClickHandler = function (e) {
 
                         window._tst11__send_info = false; // сбрасываем флаг для textarea
                     }
-
-
 
                 } else {
                     tryFetch(index + 1); // пробуем следующий слой
@@ -1027,9 +1096,15 @@ document.addEventListener('keydown', function (e) {
 document.addEventListener('DOMContentLoaded', function () {
     const attributionControl = document.querySelector('.leaflet-control-attribution');
     if (attributionControl) {
-        // attributionControl.remove(); // Удаляем элемент
         // Если вы хотите только скрыть, используйте:
         attributionControl.style.display = 'none';
+
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (isIOS) {
+            const btn = document.getElementById('fullscreenBtn');
+            if (btn) btn.style.display = 'none';
+        }
+
     }
 });
 
@@ -1063,6 +1138,8 @@ if (window.innerWidth <= 768) { // например, до 768px — мобиль
 mapContainer.appendChild(titleDiv);
 
 map.on('popupopen', function (e) {
+    // Ввод заявки для десктоп версии
+
     const root = e.popup.getElement();               // корневой DOM текущего попапа
     if (!root) return;
 
@@ -1097,6 +1174,11 @@ map.on('popupopen', function (e) {
 
             // Берём текст пользователя
             const text = ta ? ta.value.trim() : "";
+
+            if (text == "") {
+                alert('Не введено інформацію!');
+                return;
+            }
 
             fetch("php/bid.php", {
                 method: "POST",
