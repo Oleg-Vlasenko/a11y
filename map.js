@@ -79,98 +79,98 @@ const wmsLayer_1 = L.tileLayer.wms(geoServerUrl, {
 }); //.addTo(map);
 
 const wmsLayer_2_1 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_build_admin_ok',
+    layers: 'Dnepr:mbf_build_admin_ok',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_2_2 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_build_admin_bad',
+    layers: 'Dnepr:mbf_build_admin_bad',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_3_1 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_build_education_ok',
+    layers: 'Dnepr:mbf_build_education_ok',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_3_2 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_build_education_bad',
+    layers: 'Dnepr:mbf_build_education_bad',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_4_1 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_build_health_ok',
+    layers: 'Dnepr:mbf_build_health_ok',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_4_2 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_build_health_bad',
+    layers: 'Dnepr:mbf_build_health_bad',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_5_1 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_build_residential_ok',
+    layers: 'Dnepr:mbf_build_residential_ok',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_5_2 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_build_residential_bad',
+    layers: 'Dnepr:mbf_build_residential_bad',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_6_1 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_build_other_ok',
+    layers: 'Dnepr:mbf_build_other_ok',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_6_2 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_build_other_bad',
+    layers: 'Dnepr:mbf_build_other_bad',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_7_1 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_street_network_ok',
+    layers: 'Dnepr:mbf_street_network_ok',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_7_2 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_street_network_bad',
+    layers: 'Dnepr:mbf_street_network_bad',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_8_1 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_transport_stops_ok',
+    layers: 'Dnepr:mbf_transport_stops_ok',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
 }).addTo(map);
 
 const wmsLayer_8_2 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_transport_stops_bad',
+    layers: 'Dnepr:mbf_transport_stops_bad',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
@@ -191,7 +191,7 @@ const wmsLayer_9_2 = L.tileLayer.wms(geoServerUrl, {
 }).addTo(map);
 
 const wmsLayer_10_2 = L.tileLayer.wms(geoServerUrl, {
-    layers: 'Dnepr:gms_park_public_bad',
+    layers: 'Dnepr:mbf_park_public_bad',
     format: 'image/png',
     transparent: true,
     attribution: 'GeoServer Dnepr'
@@ -291,21 +291,21 @@ wfsClickHandler = function (e) {
 
 
     const urls = [
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_admin_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_admin_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_education_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_education_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_health_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_health_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_residential_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_residential_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_other_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_build_other_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_street_network_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_street_network_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_transport_stops_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_transport_stops_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
-        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:gms_park_public_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_build_admin_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_build_admin_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_build_education_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_build_education_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_build_health_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_build_health_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_build_residential_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_build_residential_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_build_other_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_build_other_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_street_network_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_street_network_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_transport_stops_ok&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_transport_stops_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`,
+        `http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_park_public_bad&outputFormat=application/json&srsName=EPSG:4326&bbox=${bbox},EPSG:4326`
     ];
 
     function tryFetch(index) {
