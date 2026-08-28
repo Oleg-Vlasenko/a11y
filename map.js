@@ -13,6 +13,10 @@ function disablePinMode() {
         return;
     }
 
+    if (routeMode) {
+        return;
+    }
+
     if (window._tst11__marker) {
         map.removeLayer(window._tst11__marker);
         window._tst11__marker = false;
@@ -1427,21 +1431,33 @@ function drawRoute(path) {
 
 
 
-// Обработчик клика для маршрута
 function routeClickHandler(e) {
     if (!routeMode) return;
+
+    // Отключаем обработчик кликов для объектов безбарьерности
+    if (wfsClickHandler) {
+        map.off('click', wfsClickHandler);
+    }
 
     loadRouteGraph().then(graph => {
         if (!graph) {
             routeMode = false;
             document.getElementById('routeBtn')?.classList.remove('active');
             map.getContainer().style.cursor = '';
+            // Включаем обработчик обратно при ошибке
+            if (wfsClickHandler) {
+                map.on('click', wfsClickHandler);
+            }
             return;
         }
 
         const nodeId = findNearestNode(e.latlng.lat, e.latlng.lng);
         if (!nodeId) {
             alert('Не вдалося знайти найближчий вузол');
+            // Включаем обработчик обратно при ошибке
+            if (wfsClickHandler) {
+                map.on('click', wfsClickHandler);
+            }
             return;
         }
 
@@ -1464,6 +1480,11 @@ function routeClickHandler(e) {
             document.getElementById('routeBtn')?.classList.remove('active');
             map.getContainer().style.cursor = '';
             map.off('click', routeClickHandler);
+
+            // Включаем обработчик объектов после завершения маршрута
+            if (wfsClickHandler) {
+                map.on('click', wfsClickHandler);
+            }
         } else {
             // Ждем вторую точку
             map.getContainer().style.cursor = 'crosshair';
@@ -1471,8 +1492,15 @@ function routeClickHandler(e) {
     });
 }
 
+
+
+
+
+
+
+
 // Обработчик кнопки маршрута
-document.getElementById('routeBtn')?.addEventListener('click', function () {
+document.getElementById('routeBtn')?.addEventListener('click', function() {
     if (!routeMode) {
         // Включаем режим
         routeMode = true;
@@ -1481,13 +1509,23 @@ document.getElementById('routeBtn')?.addEventListener('click', function () {
         this.classList.add('active');
         map.getContainer().style.cursor = 'crosshair';
         map.on('click', routeClickHandler);
+        
+        // Отключаем обработчик объектов безбарьерности
+        if (wfsClickHandler) {
+            map.off('click', wfsClickHandler);
+        }
     } else {
         // Выключаем режим
         routeMode = false;
         routePoints = [];
+        routeLayer.clearLayers();
         this.classList.remove('active');
         map.getContainer().style.cursor = '';
         map.off('click', routeClickHandler);
+        
+        // Включаем обработчик объектов обратно
+        if (wfsClickHandler) {
+            map.on('click', wfsClickHandler);
+        }
     }
 });
-

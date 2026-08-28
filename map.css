@@ -628,3 +628,49 @@ body {
     font-size: 14px;
     line-height: 24px;
 }
+
+
+
+/* Фикс для активной кнопки маршрута */
+#routeBtn.active {
+    background: #377fb9 !important;
+}
+
+#routeBtn.active svg polyline {
+    stroke: #ffffff !important;
+}
+
+#routeBtn.active svg circle {
+    fill: #ffffff !important;
+}
+
+/* Наведение на активную кнопку */
+#routeBtn.active:hover {
+    background: #377fb9 !important;
+}
+
+#routeBtn.active:hover svg polyline {
+    stroke: #ffffff !important;
+}
+
+#routeBtn.active:hover svg circle {
+    fill: #ffffff !important;
+}
+
+/* Наведение на неактивную кнопку */
+#routeBtn:hover svg polyline {
+    stroke: #ffffff;
+}
+
+#routeBtn:hover svg circle {
+    fill: #ffffff;
+}
+
+/* Базовые цвета для неактивной кнопки */
+#routeBtn svg polyline {
+    stroke: #377fb9;
+}
+
+#routeBtn svg circle {
+    fill: #377fb9;
+}
