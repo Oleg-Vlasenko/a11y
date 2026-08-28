@@ -63,9 +63,9 @@ const map = L.map('map', {
 //     maxZoom: 22,
 //     attribution: '© OpenStreetMap'
 // }).addTo(map);
-const osmLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+const osmLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_2fl6_1_5048332282136000b6987d53', {
     maxZoom: 22,
-    attribution: '© OpenStreetMap'
+    attribution: 'cartocdn.com'
 }).addTo(map);
 
 const geoServerUrl = 'http://46.98.11.253:8080/geoserver/Dnepr/wms';
@@ -352,380 +352,380 @@ wfsClickHandler = function (e) {
                     _cl(featureId);
                     _cl(props);
 
-                    if (featureId == 'gms_build_admin_bad.1') {
-                        imgFile = 'gms_build_admin_bad_1.png';
+                    if (featureId == 'mbf_build_admin_bad.1') {
+                        imgFile = 'mbf_build_admin_bad_1.png';
                         objType = 'Адміністративні будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_admin_bad.2') {
-                        imgFile = 'gms_build_admin_bad_2.png';
+                    } else if (featureId == 'mbf_build_admin_bad.2') {
+                        imgFile = 'mbf_build_admin_bad_2.png';
                         objType = 'Адміністративні будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_admin_bad.3') {
-                        imgFile = 'gms_build_admin_bad_3.png';
+                    } else if (featureId == 'mbf_build_admin_bad.3') {
+                        imgFile = 'mbf_build_admin_bad_3.png';
                         objType = 'Адміністративні будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_admin_bad.4') {
-                        imgFile = 'gms_build_admin_bad_4.png';
+                    } else if (featureId == 'mbf_build_admin_bad.4') {
+                        imgFile = 'mbf_build_admin_bad_4.png';
                         objType = 'Адміністративні будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_admin_bad.5') {
-                        imgFile = 'gms_build_admin_bad_5.png';
+                    } else if (featureId == 'mbf_build_admin_bad.5') {
+                        imgFile = 'mbf_build_admin_bad_5.png';
                         objType = 'Адміністративні будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_admin_ok.1') {
-                        imgFile = 'gms_build_admin_ok_1.png';
+                    } else if (featureId == 'mbf_build_admin_ok.1') {
+                        imgFile = 'mbf_build_admin_ok_1.png';
                         objType = 'Адміністративні будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_education_ok.1') {
-                        imgFile = 'gms_build_education_ok_1.png';
+                    } else if (featureId == 'mbf_build_education_ok.1') {
+                        imgFile = 'mbf_build_education_ok_1.png';
                         objType = 'Заклади освіти';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_education_bad.1') {
-                        imgFile = 'gms_build_education_bad_1.png';
+                    } else if (featureId == 'mbf_build_education_bad.1') {
+                        imgFile = 'mbf_build_education_bad_1.png';
                         objType = 'Заклади освіти';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_education_bad.2') {
-                        imgFile = 'gms_build_education_bad_2.png';
+                    } else if (featureId == 'mbf_build_education_bad.2') {
+                        imgFile = 'mbf_build_education_bad_2.png';
                         objType = 'Заклади освіти';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
                         // contentData = 'Необхідно впорядкувати вхідну групу, облаштувати пандус, встановити тактильну плитку та обладнати вбиральні відповідно до нормативів.';
 
-                    } else if (featureId == 'gms_build_education_bad.3') {
-                        imgFile = 'gms_build_education_bad_3.png';
+                    } else if (featureId == 'mbf_build_education_bad.3') {
+                        imgFile = 'mbf_build_education_bad_3.png';
                         objType = 'Заклади освіти';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_ok.1') {
-                        imgFile = 'gms_build_health_ok_1.png';
+                    } else if (featureId == 'mbf_build_health_ok.1') {
+                        imgFile = 'mbf_build_health_ok_1.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_ok.2') {
-                        imgFile = 'gms_build_health_ok_2.png';
+                    } else if (featureId == 'mbf_build_health_ok.2') {
+                        imgFile = 'mbf_build_health_ok_2.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_ok.3') {
-                        imgFile = 'gms_build_health_ok_3.png';
+                    } else if (featureId == 'mbf_build_health_ok.3') {
+                        imgFile = 'mbf_build_health_ok_3.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_ok.4') {
-                        imgFile = 'gms_build_health_ok_4.png';
+                    } else if (featureId == 'mbf_build_health_ok.4') {
+                        imgFile = 'mbf_build_health_ok_4.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_ok.5') {
-                        imgFile = 'gms_build_health_ok_5.png';
+                    } else if (featureId == 'mbf_build_health_ok.5') {
+                        imgFile = 'mbf_build_health_ok_5.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_ok.6') {
-                        imgFile = 'gms_build_health_ok_6.png';
+                    } else if (featureId == 'mbf_build_health_ok.6') {
+                        imgFile = 'mbf_build_health_ok_6.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_bad.1') {
-                        imgFile = 'gms_build_health_bad_1.png';
+                    } else if (featureId == 'mbf_build_health_bad.1') {
+                        imgFile = 'mbf_build_health_bad_1.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_bad.2') {
-                        imgFile = 'gms_build_health_bad_2.png';
+                    } else if (featureId == 'mbf_build_health_bad.2') {
+                        imgFile = 'mbf_build_health_bad_2.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_bad.3') {
-                        imgFile = 'gms_build_health_bad_3.png';
+                    } else if (featureId == 'mbf_build_health_bad.3') {
+                        imgFile = 'mbf_build_health_bad_3.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_bad.4') {
-                        imgFile = 'gms_build_health_bad_4.png';
+                    } else if (featureId == 'mbf_build_health_bad.4') {
+                        imgFile = 'mbf_build_health_bad_4.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_bad.5') {
-                        imgFile = 'gms_build_health_bad_5.png';
+                    } else if (featureId == 'mbf_build_health_bad.5') {
+                        imgFile = 'mbf_build_health_bad_5.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_bad.6') {
-                        imgFile = 'gms_build_health_bad_6.png';
+                    } else if (featureId == 'mbf_build_health_bad.6') {
+                        imgFile = 'mbf_build_health_bad_6.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_health_bad.7') {
-                        imgFile = 'gms_build_health_bad_7.png';
+                    } else if (featureId == 'mbf_build_health_bad.7') {
+                        imgFile = 'mbf_build_health_bad_7.png';
                         objType = 'Установи охорони здоров`я';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_residential_ok.1') {
-                        imgFile = 'gms_build_residential_ok_1.png';
+                    } else if (featureId == 'mbf_build_residential_ok.1') {
+                        imgFile = 'mbf_build_residential_ok_1.png';
                         objType = 'Багатоквартирні будинки';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_residential_bad.1') {
-                        imgFile = 'gms_build_residential_bad_1.png';
+                    } else if (featureId == 'mbf_build_residential_bad.1') {
+                        imgFile = 'mbf_build_residential_bad_1.png';
                         objType = 'Багатоквартирні будинки';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_residential_bad.2') {
-                        imgFile = 'gms_build_residential_bad_2.png';
+                    } else if (featureId == 'mbf_build_residential_bad.2') {
+                        imgFile = 'mbf_build_residential_bad_2.png';
                         objType = 'Багатоквартирні будинки';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_residential_bad.3') {
-                        imgFile = 'gms_build_residential_bad_3.png';
+                    } else if (featureId == 'mbf_build_residential_bad.3') {
+                        imgFile = 'mbf_build_residential_bad_3.png';
                         objType = 'Багатоквартирні будинки';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_residential_bad.4') {
-                        imgFile = 'gms_build_residential_bad_4.png';
+                    } else if (featureId == 'mbf_build_residential_bad.4') {
+                        imgFile = 'mbf_build_residential_bad_4.png';
                         objType = 'Багатоквартирні будинки';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_residential_bad.5') {
-                        imgFile = 'gms_build_residential_bad_5.png';
+                    } else if (featureId == 'mbf_build_residential_bad.5') {
+                        imgFile = 'mbf_build_residential_bad_5.png';
                         objType = 'Багатоквартирні будинки';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_residential_bad.6') {
-                        imgFile = 'gms_build_residential_bad_6.png';
+                    } else if (featureId == 'mbf_build_residential_bad.6') {
+                        imgFile = 'mbf_build_residential_bad_6.png';
                         objType = 'Багатоквартирні будинки';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_residential_bad.7') {
-                        imgFile = 'gms_build_residential_bad_7.png';
+                    } else if (featureId == 'mbf_build_residential_bad.7') {
+                        imgFile = 'mbf_build_residential_bad_7.png';
                         objType = 'Багатоквартирні будинки';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_residential_bad.8') {
-                        imgFile = 'gms_build_residential_bad_8.png';
+                    } else if (featureId == 'mbf_build_residential_bad.8') {
+                        imgFile = 'mbf_build_residential_bad_8.png';
                         objType = 'Багатоквартирні будинки';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_ok.1') {
-                        imgFile = 'gms_build_other_ok_1.png';
+                    } else if (featureId == 'mbf_build_other_ok.1') {
+                        imgFile = 'mbf_build_other_ok_1.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_ok.2') {
-                        imgFile = 'gms_build_other_ok_2.png';
+                    } else if (featureId == 'mbf_build_other_ok.2') {
+                        imgFile = 'mbf_build_other_ok_2.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_ok.3') {
-                        imgFile = 'gms_build_other_ok_3.png';
+                    } else if (featureId == 'mbf_build_other_ok.3') {
+                        imgFile = 'mbf_build_other_ok_3.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_ok.4') {
-                        imgFile = 'gms_build_other_ok_4.png';
+                    } else if (featureId == 'mbf_build_other_ok.4') {
+                        imgFile = 'mbf_build_other_ok_4.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_ok.5') {
-                        imgFile = 'gms_build_other_ok_5.png';
+                    } else if (featureId == 'mbf_build_other_ok.5') {
+                        imgFile = 'mbf_build_other_ok_5.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_bad.1') {
-                        imgFile = 'gms_build_other_bad_1.png';
+                    } else if (featureId == 'mbf_build_other_bad.1') {
+                        imgFile = 'mbf_build_other_bad_1.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_bad.2') {
-                        imgFile = 'gms_build_other_bad_2.png';
+                    } else if (featureId == 'mbf_build_other_bad.2') {
+                        imgFile = 'mbf_build_other_bad_2.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         // objData = 'Кав`ярня "Чіп і Дейл"';
                         contentData = (props['descr'] || '').trim();
                         // contentData = 'Рекомендовано змінити вхідну групу, влаштувати нормативні сходи з поручнями, встановити підйомник, прибрати інформаційний шум та замінити дверні прорізи.';
 
-                    } else if (featureId == 'gms_build_other_bad.3') {
-                        imgFile = 'gms_build_other_bad_3.png';
+                    } else if (featureId == 'mbf_build_other_bad.3') {
+                        imgFile = 'mbf_build_other_bad_3.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (['gms_build_other_bad.4',
-                        'gms_build_other_bad.5',
-                        'gms_build_other_bad.6'].includes(featureId)) {
-                        imgFile = 'gms_build_other_bad_4.png';
+                    } else if (['mbf_build_other_bad.4',
+                        'mbf_build_other_bad.5',
+                        'mbf_build_other_bad.6'].includes(featureId)) {
+                        imgFile = 'mbf_build_other_bad_4.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_bad.7') {
-                        imgFile = 'gms_build_other_bad_7.png';
+                    } else if (featureId == 'mbf_build_other_bad.7') {
+                        imgFile = 'mbf_build_other_bad_7.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_bad.8') {
-                        imgFile = 'gms_build_other_bad_8.png';
+                    } else if (featureId == 'mbf_build_other_bad.8') {
+                        imgFile = 'mbf_build_other_bad_8.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_bad.9') {
-                        imgFile = 'gms_build_other_bad_9.png';
+                    } else if (featureId == 'mbf_build_other_bad.9') {
+                        imgFile = 'mbf_build_other_bad_9.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_bad.10') {
-                        imgFile = 'gms_build_other_bad_10.png';
+                    } else if (featureId == 'mbf_build_other_bad.10') {
+                        imgFile = 'mbf_build_other_bad_10.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_bad.11') {
-                        imgFile = 'gms_build_other_bad_11.png';
+                    } else if (featureId == 'mbf_build_other_bad.11') {
+                        imgFile = 'mbf_build_other_bad_11.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_bad.12') {
-                        imgFile = 'gms_build_other_bad_12.png';
+                    } else if (featureId == 'mbf_build_other_bad.12') {
+                        imgFile = 'mbf_build_other_bad_12.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_build_other_bad.13') {
-                        imgFile = 'gms_build_other_bad_13.png';
+                    } else if (featureId == 'mbf_build_other_bad.13') {
+                        imgFile = 'mbf_build_other_bad_13.png';
                         objType = 'Інші будівлі';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_street_network_ok.1') {
-                        imgFile = 'gms_street_network_ok_1.png';
+                    } else if (featureId == 'mbf_street_network_ok.1') {
+                        imgFile = 'mbf_street_network_ok_1.png';
                         objType = 'Вулично-дорожня мережа';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_street_network_ok.2' || featureId == 'gms_street_network_ok.3') {
+                    } else if (featureId == 'mbf_street_network_ok.2' || featureId == 'mbf_street_network_ok.3') {
 
-                        imgFile = 'gms_street_network_ok_2.png';
+                        imgFile = 'mbf_street_network_ok_2.png';
                         objType = 'Вулично-дорожня мережа';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_street_network_ok.4') {
-                        imgFile = 'gms_street_network_ok_4.png';
+                    } else if (featureId == 'mbf_street_network_ok.4') {
+                        imgFile = 'mbf_street_network_ok_4.png';
                         objType = 'Вулично-дорожня мережа';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
 
-                    } else if (featureId.startsWith('gms_street_network_bad.')) {
+                    } else if (featureId.startsWith('mbf_street_network_bad.')) {
                         let num = parseInt(featureId.split('.')[1], 10);
 
                         if (num >= 1 && num <= 8) {
-                            imgFile = 'gms_street_network_bad_1.png';
+                            imgFile = 'mbf_street_network_bad_1.png';
                             objType = 'Вулично-дорожня мережа';
                             objData = (props['name'] || '').trim();
                             contentData = (props['descr'] || '').trim();
 
                         } else if (num >= 9 && num <= 11) {
-                            imgFile = 'gms_street_network_bad_2.png';
+                            imgFile = 'mbf_street_network_bad_2.png';
                             objType = 'Вулично-дорожня мережа';
                             objData = (props['name'] || '').trim();
                             contentData = (props['descr'] || '').trim();
 
                         } else if (num >= 12 && num <= 16) {
-                            imgFile = 'gms_street_network_bad_3.png';
+                            imgFile = 'mbf_street_network_bad_3.png';
                             objType = 'Вулично-дорожня мережа';
                             objData = (props['name'] || '').trim();
                             contentData = (props['descr'] || '').trim();
 
                         } else if (num >= 17 && num <= 28) {
-                            imgFile = 'gms_street_network_bad_4.png';
+                            imgFile = 'mbf_street_network_bad_4.png';
                             objType = 'Вулично-дорожня мережа';
                             objData = (props['name'] || '').trim();
                             contentData = (props['descr'] || '').trim();
                         }
 
 
-                    } else if (featureId == 'gms_transport_stops_ok.1') {
-                        imgFile = 'gms_street_network_ok_2.png';
+                    } else if (featureId == 'mbf_transport_stops_ok.1') {
+                        imgFile = 'mbf_street_network_ok_2.png';
                         objType = 'Зупинки громадського транспорту';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_transport_stops_bad.1') {
-                        imgFile = 'gms_transport_stops_bad_1.png';
+                    } else if (featureId == 'mbf_transport_stops_bad.1') {
+                        imgFile = 'mbf_transport_stops_bad_1.png';
                         objType = 'Зупинки громадського транспорту';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_transport_stops_bad.2') {
-                        imgFile = 'gms_transport_stops_bad_2.png';
+                    } else if (featureId == 'mbf_transport_stops_bad.2') {
+                        imgFile = 'mbf_transport_stops_bad_2.png';
                         objType = 'Зупинки громадського транспорту';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_transport_stops_ok.2') {
-                        imgFile = 'gms_transport_stops_ok_2.png';
+                    } else if (featureId == 'mbf_transport_stops_ok.2') {
+                        imgFile = 'mbf_transport_stops_ok_2.png';
                         objType = 'Зупинки громадського транспорту';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_park_public_bad.1') {
-                        imgFile = 'gms_park_public_bad_1.png';
+                    } else if (featureId == 'mbf_park_public_bad.1') {
+                        imgFile = 'mbf_park_public_bad_1.png';
                         objType = 'Парки та сквери';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
 
-                    } else if (featureId == 'gms_park_public_bad.2') {
-                        imgFile = 'gms_park_public_bad_2.png';
+                    } else if (featureId == 'mbf_park_public_bad.2') {
+                        imgFile = 'mbf_park_public_bad_2.png';
                         objType = 'Парки та сквери';
                         objData = (props['name'] || '').trim();
                         contentData = (props['descr'] || '').trim();
@@ -1115,7 +1115,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     adminBtn.addEventListener("click", () => {
         const loc = window.location;
-        const base = loc.origin + loc.pathname.replace(/\/[^\/]*$/, ""); 
+        const base = loc.origin + loc.pathname.replace(/\/[^\/]*$/, "");
         // удаляем имя текущего файла
 
         window.location.href = base + "/admin/index.php";
@@ -1223,3 +1223,271 @@ map.on('popupopen', function (e) {
         }
     });
 });
+
+// ============================================
+// НОВЫЙ БЛОК: ПОСТРОЕНИЕ МАРШРУТА
+// ============================================
+
+let routeLayer = L.layerGroup().addTo(map);
+let routePoints = [];
+let routeMode = false;
+let graphData = null;
+
+// Загрузка графа из WFS
+async function loadRouteGraph() {
+    if (graphData) return graphData;
+
+    const url = 'http://46.98.11.253:8080/geoserver/Dnepr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Dnepr:mbf_a11y_route2&outputFormat=application/json';
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const graph = {};
+
+
+
+
+
+        // В функции loadRouteGraph(), внутри data.features.forEach:
+        data.features.forEach(feature => {
+            const coords = feature.geometry.coordinates;
+            const accessible = feature.properties.accessible === true || feature.properties.accessible === 'true';
+
+            for (let i = 0; i < coords.length - 1; i++) {
+                const fromKey = coords[i][0] + ',' + coords[i][1];
+                const toKey = coords[i + 1][0] + ',' + coords[i + 1][1];
+                const segmentKey = fromKey + '->' + toKey; // ключ для сегмента
+
+                if (!graph[fromKey]) {
+                    graph[fromKey] = {
+                        lat: coords[i][1],
+                        lng: coords[i][0],
+                        neighbors: [],
+                        segments: {} // храним статусы сегментов
+                    };
+                }
+                if (!graph[toKey]) {
+                    graph[toKey] = {
+                        lat: coords[i + 1][1],
+                        lng: coords[i + 1][0],
+                        neighbors: [],
+                        segments: {}
+                    };
+                }
+
+                // Сохраняем статус для сегмента в обоих направлениях
+                graph[fromKey].segments[toKey] = accessible;
+                graph[toKey].segments[fromKey] = accessible;
+
+                if (!graph[fromKey].neighbors.includes(toKey)) {
+                    graph[fromKey].neighbors.push(toKey);
+                }
+                if (!graph[toKey].neighbors.includes(fromKey)) {
+                    graph[toKey].neighbors.push(fromKey);
+                }
+            }
+        });
+
+
+
+
+
+
+        graphData = graph;
+        console.log('Graph loaded:', Object.keys(graph).length, 'nodes');
+        return graph;
+    } catch (error) {
+        console.error('Error loading graph:', error);
+        alert('Не вдалося завантажити дані маршруту');
+        return null;
+    }
+}
+
+// Поиск ближайшего узла
+function findNearestNode(lat, lng) {
+    if (!graphData) return null;
+
+    let minDist = Infinity;
+    let nearest = null;
+
+    for (const [id, node] of Object.entries(graphData)) {
+        const d = (node.lat - lat) ** 2 + (node.lng - lng) ** 2;
+        if (d < minDist) {
+            minDist = d;
+            nearest = id;
+        }
+    }
+
+    return nearest;
+}
+
+// BFS поиск пути
+function findPath(startId, endId) {
+    if (!graphData[startId] || !graphData[endId]) return null;
+
+    const queue = [startId];
+    const visited = new Set([startId]);
+    const parent = { [startId]: null };
+
+    while (queue.length > 0) {
+        const current = queue.shift();
+
+        if (current === endId) {
+            const path = [];
+            let node = endId;
+            while (node) {
+                path.unshift(node);
+                node = parent[node];
+            }
+            return path;
+        }
+
+        for (const neighbor of graphData[current].neighbors) {
+            if (!visited.has(neighbor)) {
+                visited.add(neighbor);
+                parent[neighbor] = current;
+                queue.push(neighbor);
+            }
+        }
+    }
+
+    return null;
+}
+
+
+
+
+
+
+
+function drawRoute(path) {
+    routeLayer.clearLayers();
+
+    if (!path || path.length < 2) {
+        alert('Маршрут не знайдено');
+        return;
+    }
+
+    const segments = [];
+    for (let i = 0; i < path.length - 1; i++) {
+        const fromId = path[i];
+        const toId = path[i + 1];
+        const from = graphData[fromId];
+        const to = graphData[toId];
+
+        // Берем статус из сохраненных сегментов
+        const isAccessible = from.segments && from.segments[toId] === true;
+        const color = isAccessible ? '#00cc44' : '#ff4444';
+
+        segments.push({
+            from: [from.lat, from.lng],
+            to: [to.lat, to.lng],
+            color: color
+        });
+    }
+
+    segments.forEach(seg => {
+        L.polyline([seg.from, seg.to], {
+            color: seg.color,
+            weight: 5,
+            opacity: 0.8
+        }).addTo(routeLayer);
+    });
+
+    // Маркеры A и B
+    const startId = path[0];
+    const endId = path[path.length - 1];
+    const start = graphData[startId];
+    const end = graphData[endId];
+
+    if (start && end) {
+        L.marker([start.lat, start.lng], {
+            icon: L.divIcon({
+                className: 'route-marker',
+                html: 'A',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            })
+        }).addTo(routeLayer);
+
+        L.marker([end.lat, end.lng], {
+            icon: L.divIcon({
+                className: 'route-marker',
+                html: 'B',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            })
+        }).addTo(routeLayer);
+    }
+}
+
+
+
+
+
+
+// Обработчик клика для маршрута
+function routeClickHandler(e) {
+    if (!routeMode) return;
+
+    loadRouteGraph().then(graph => {
+        if (!graph) {
+            routeMode = false;
+            document.getElementById('routeBtn')?.classList.remove('active');
+            map.getContainer().style.cursor = '';
+            return;
+        }
+
+        const nodeId = findNearestNode(e.latlng.lat, e.latlng.lng);
+        if (!nodeId) {
+            alert('Не вдалося знайти найближчий вузол');
+            return;
+        }
+
+        routePoints.push(nodeId);
+
+        // Визуальная отметка
+        const marker = L.circleMarker([graphData[nodeId].lat, graphData[nodeId].lng], {
+            radius: 8,
+            color: routePoints.length === 1 ? '#00ff00' : '#ff0000',
+            fillColor: routePoints.length === 1 ? '#00ff00' : '#ff0000',
+            fillOpacity: 0.7
+        }).addTo(routeLayer);
+
+        if (routePoints.length === 2) {
+            const path = findPath(routePoints[0], routePoints[1]);
+            drawRoute(path);
+
+            routePoints = [];
+            routeMode = false;
+            document.getElementById('routeBtn')?.classList.remove('active');
+            map.getContainer().style.cursor = '';
+            map.off('click', routeClickHandler);
+        } else {
+            // Ждем вторую точку
+            map.getContainer().style.cursor = 'crosshair';
+        }
+    });
+}
+
+// Обработчик кнопки маршрута
+document.getElementById('routeBtn')?.addEventListener('click', function () {
+    if (!routeMode) {
+        // Включаем режим
+        routeMode = true;
+        routePoints = [];
+        routeLayer.clearLayers();
+        this.classList.add('active');
+        map.getContainer().style.cursor = 'crosshair';
+        map.on('click', routeClickHandler);
+    } else {
+        // Выключаем режим
+        routeMode = false;
+        routePoints = [];
+        this.classList.remove('active');
+        map.getContainer().style.cursor = '';
+        map.off('click', routeClickHandler);
+    }
+});
+

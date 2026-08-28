@@ -618,3 +618,13 @@ body {
     border-radius: 8px;
     box-sizing: border-box;
 }
+
+.route-marker {
+    background: #ff4444;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 24px;
+}
