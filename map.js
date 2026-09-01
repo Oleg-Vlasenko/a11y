@@ -3,6 +3,7 @@ function _cl(txt) {
     console.log(txt);
 }
 
+
 window._tst11__pin_click = false;
 window._tst11__marker = false;
 window._tst11__send_info = false;
@@ -46,9 +47,7 @@ let initialLat, initialLng, initialZoom;
 // Проверяем ширину экрана
 if (window.innerWidth <= 768) {
     // Мобильный экран
-    // initialLat = 48.4605;
     initialLat = 48.4595; // координаты для моб версии
-    // initialLng = 35.0585;
     initialLng = 35.065;
     initialZoom = 16;
 } else {
@@ -63,10 +62,13 @@ const map = L.map('map', {
 
 
 // Подложка
+// OpenStreet
 // const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //     maxZoom: 22,
 //     attribution: '© OpenStreetMap'
 // }).addTo(map);
+
+// Carto CDN
 const osmLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_2fl6_1_5048332282136000b6987d53', {
     maxZoom: 22,
     attribution: 'cartocdn.com'
@@ -951,6 +953,7 @@ function createCustomLayerControl(base, overlays, map, containerId) {
             baseDiv.appendChild(label);
 
             input.onchange = function () {
+
                 for (let l in base) {
                     map.removeLayer(base[l]);
                 }
@@ -974,6 +977,14 @@ function createCustomLayerControl(base, overlays, map, containerId) {
         overlayDiv.className = 'leaflet-control-layers-overlays';
         let count = 0;
         let firstNoIcon = false;
+
+
+
+
+
+
+
+
         for (let layerName in overlays) {
             count++;
             const input = document.createElement('input');
@@ -981,11 +992,9 @@ function createCustomLayerControl(base, overlays, map, containerId) {
             input.name = 'leaflet-overlay';
             input.id = 'overlay-' + count;
 
-            // Проверяем состояние группы слоев или обычного слоя
             const layer = overlays[layerName];
             let isChecked = false;
             if (layer instanceof L.LayerGroup) {
-                // Для группы проверяем, добавлены ли все дочерние слои
                 isChecked = layer.getLayers().every(childLayer => map.hasLayer(childLayer));
             } else {
                 isChecked = map.hasLayer(layer);
@@ -994,10 +1003,9 @@ function createCustomLayerControl(base, overlays, map, containerId) {
 
             const label = document.createElement('label');
             label.setAttribute('for', input.id);
-            // label.appendChild(document.createTextNode(layerName));
             const spanText = document.createElement('span');
             spanText.className = 'label-text';
-            spanText.textContent = layerName;  // текст слоя
+            spanText.textContent = layerName;
             label.appendChild(spanText);
 
             if (overlayIcons[layerName] != 'none') {
@@ -1017,7 +1025,6 @@ function createCustomLayerControl(base, overlays, map, containerId) {
                 const sep = document.createElement('div');
                 sep.className = 'leaflet-control-layers-separator';
                 overlayDiv.appendChild(sep);
-
                 firstNoIcon = true;
             }
 
@@ -1028,7 +1035,6 @@ function createCustomLayerControl(base, overlays, map, containerId) {
                 const layer = overlays[layerName];
                 if (input.checked) {
                     if (layer instanceof L.LayerGroup) {
-                        // Добавляем все слои из группы
                         layer.getLayers().forEach(childLayer => {
                             childLayer.addTo(map);
                         });
@@ -1037,7 +1043,6 @@ function createCustomLayerControl(base, overlays, map, containerId) {
                     }
                 } else {
                     if (layer instanceof L.LayerGroup) {
-                        // Удаляем все слои из группы
                         layer.getLayers().forEach(childLayer => {
                             map.removeLayer(childLayer);
                         });
@@ -1048,6 +1053,11 @@ function createCustomLayerControl(base, overlays, map, containerId) {
                 createCustomLayerControl(base, overlays, map, containerId);
             };
         }
+
+
+
+
+
         container.appendChild(overlayDiv);
     }
 }
@@ -1299,8 +1309,8 @@ async function loadRouteGraph() {
 
 
         graphData = graph;
-        console.log('Graph loaded:', Object.keys(graph).length, 'nodes');
         return graph;
+
     } catch (error) {
         console.error('Error loading graph:', error);
         alert('Не вдалося завантажити дані маршруту');
@@ -1500,7 +1510,7 @@ function routeClickHandler(e) {
 
 
 // Обработчик кнопки маршрута
-document.getElementById('routeBtn')?.addEventListener('click', function() {
+document.getElementById('routeBtn')?.addEventListener('click', function () {
     if (!routeMode) {
         // Включаем режим
         routeMode = true;
@@ -1509,7 +1519,7 @@ document.getElementById('routeBtn')?.addEventListener('click', function() {
         this.classList.add('active');
         map.getContainer().style.cursor = 'crosshair';
         map.on('click', routeClickHandler);
-        
+
         // Отключаем обработчик объектов безбарьерности
         if (wfsClickHandler) {
             map.off('click', wfsClickHandler);
@@ -1522,7 +1532,7 @@ document.getElementById('routeBtn')?.addEventListener('click', function() {
         this.classList.remove('active');
         map.getContainer().style.cursor = '';
         map.off('click', routeClickHandler);
-        
+
         // Включаем обработчик объектов обратно
         if (wfsClickHandler) {
             map.on('click', wfsClickHandler);
